@@ -1,10 +1,13 @@
 class User {
     constructor(){
         this.y = entrance.y
-        this.x = entrance.x 
+        this.x = entrance.x
+        this.kublaiY = entrance.y +1
+        this.kublaiX = entrance.x 
         this.moveX = 0
         this.moveY = 0
         this.vision = {
+            start: [this.x, this.y],
             top: [this.x,this.y-1],
             topRight: [this.x+1,this.y- 1],
             right: [this.x+ 1,this.y],
@@ -25,6 +28,7 @@ class User {
 
     updateVision(){
         this.vision = {
+            start: [this.x, this.y],
             top: [this.x,this.y-1],
             topRight: [this.x+1,this.y- 1],
             right: [this.x+ 1,this.y],
@@ -59,9 +63,11 @@ class User {
         }
         
         if (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x)  {
+            this.kublaiY = this.y
+            this.kublaiX = this.x
             this.x += this.moveX
             this.y += this.moveY
-            
+     
             levelObj.generateMap()
     
             this.y = Math.floor(Math.random() * 20)
@@ -75,6 +81,8 @@ class User {
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
             
             try {
+                this.kublaiY = this.y
+                this.kublaiX = this.x
                 this.x += this.moveX
                 this.y += this.moveY
                 this.updateVision()	

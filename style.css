@@ -39,3 +39,7 @@
     content: url(img/character/archer.gif);
     background-image: url(img/ground.png);
 }
+
+.kublai {
+    background-color: blue;
+}

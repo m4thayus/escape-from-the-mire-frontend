@@ -111,6 +111,9 @@ class Level {
                 if (y == user.y && x == user.x) {
                     level[y][x].type = 'floor'
                     domMap += `<div class="tile player"></div>`;
+                } else if (y == user.kublaiY && x == user.kublaiX){
+                    level[y][x].status = 'show'
+                    domMap += `<div class="tile kublai"></div>`;
                 } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
                     const tile = level[y][x];
                     level[y][x].status = 'show'
