@@ -15,11 +15,6 @@
     height: 16px;
 }
 
-
-.black .moster {
-    content: url(img/unseen.png);
-}
-
 .floor {
     background-image: url(img/ground.png);
 }
@@ -62,14 +57,29 @@
     background-image: url(img/ground.png);
 }
 
-.monster {
-    content: url(img/character/thief.gif); 
-}
-
 .tentacle {
     content: url(img/monster/blood-tentacle.png);
 }
 
+.skeleton {
+    content: url(img/monster/skeleton.png); 
+    background-image: url(img/ground.png);
+}
+
+.crawler {
+    content: url(img/monster/crawler.png); 
+    background-image: url(img/ground.png);
+}
+
+.wraith {
+    content: url(img/monster/wraith.png); 
+    background-image: url(img/ground.png);
+}
+
 .black {
+    content: url(img/unseen.png);
+}
+
+.black .monster {
     content: url(img/unseen.png);
 }
