@@ -1,7 +1,7 @@
 class User {
     constructor(){
-        this.y = Math.floor(Math.random() * 30)
-        this.x = Math.floor(Math.random() * 30)
+        this.y = entrance.y
+        this.x = entrance.x 
         this.moveX = 0
         this.moveY = 0
     }
@@ -23,7 +23,7 @@ class User {
                 this.moveX = 1
                 break;
         }
-    
+        
         if (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x)  {
             this.x += this.moveX
             this.y += this.moveY
