@@ -100,16 +100,28 @@ class Level {
         }
     }
 
+    randomMonster(){
+        for (let rowNumber = 1; rowNumber < this.map.length - 1; rowNumber++){
+            for (let columnNumber = 1; columnNumber < this.map[rowNumber].length -1; columnNumber++) {
+                let cell = this.map[rowNumber][columnNumber]
+                if (cell.type === "floor") {
+                    if (Math.random() < 0.02) {
+                        monster = new Monster(rowNumber, columnNumber)
+                    }
+                }
+            }
+        }
+    }
+
     // Converts map into HTML elements
     generateMap(){
         let domMap = "<div>";
-
         let userVisionCords = Object.values(user.vision)
+        
         for (let y = 0; y < level.length; y++) {
             domMap += "<div class='row'>";
             for (let x = 0; x < level[y].length; x++) {
                 if (y == user.y && x == user.x) {
-                    level[y][x].type = 'floor'
                     domMap += `<div class="tile player"></div>`;
                 } else if (y == user.kublaiY && x == user.kublaiX){
                     level[y][x].status = 'show'
@@ -125,10 +137,8 @@ class Level {
                     domMap += `<div class="tile black"></div>`;
                 }
             }
-            domMap += "</div>";
-
+        domMap += "</div>";
         domMap += "</div>";}
-        
         document.getElementById("app").innerHTML = domMap;
     }
 }

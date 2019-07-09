@@ -81,6 +81,10 @@ class User {
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
             
             try {
+                if (level[this.y + this.moveY][this.x + this.moveX].texture === 'chest') {
+                    console.log("CHEST COLLISION")
+                    level[this.y + this.moveY][this.x + this.moveX].texture = null
+                }
                 this.kublaiY = this.y
                 this.kublaiX = this.x
                 this.x += this.moveX

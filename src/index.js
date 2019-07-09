@@ -19,6 +19,7 @@ function startGame(event){
 
 let levelObj
 let level
+let monster 
 let entrance = {}
 let user
 let exit = {}
