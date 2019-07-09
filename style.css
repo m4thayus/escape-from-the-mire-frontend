@@ -27,8 +27,24 @@
     content: url(img/gold-chest.png);
 }
 
+.blood {
+    content: url(img/blood.png);
+}
+
 .tree {
     content: url(img/tree.png);
+}
+
+.tree-alt {
+    content: url(img/tree-alt.png);
+}
+
+.flame {
+    content: url(img/flame.png);
+}
+
+.rock {
+    content: url(img/rock.png);
 }
 
 .wall {
