@@ -23,6 +23,7 @@ class Level {
         this.parseRawMaze(raw_maze)
         this.findEntranceAndExit()
         this.randomWallToFloor()
+        this.randomFloorToChest()
         user = new User();
     }
 
@@ -80,8 +81,20 @@ class Level {
                 if (cell.type === "wall") {
                     cell.type = (Math.random() < 0.08) ? "floor" : "wall"
                     if (cell.type === 'floor') {
-                        cell.texture = ""
+                        cell.texture = null
                     }
+                }
+            }
+        }
+    }
+
+    // random chance for chest
+    randomFloorToChest(){
+        for (let rowNumber = 1; rowNumber < this.map.length - 1; rowNumber++){
+            for (let columnNumber = 1; columnNumber < this.map[rowNumber].length -1; columnNumber++) {
+                let cell = this.map[rowNumber][columnNumber]
+                if (cell.type === "floor") {
+                    cell.texture = (Math.random() < 0.001) ? "chest" : null
                 }
             }
         }
