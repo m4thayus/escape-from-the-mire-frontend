@@ -13,6 +13,13 @@ class User {
             bottomLeft: [this.x-1,this.y+1],
             left: [this.x-1,this.y],
             topLeft: [this.x-1,this.y-1],
+            // increases Field of view by 3 at top and 3 at bottom
+            topFar: [this.x, this.y-2],
+            topLeftFar: [this.x-1, this.y-2],
+            topRightFar: [this.x+1, this.y-2],
+            bottomFar: [this.x, this.y+2],
+            bottomLeftFar: [this.x-1, this.y+2],
+            bottomRightFar: [this.x+1, this.y+2],
         }
     }
 
