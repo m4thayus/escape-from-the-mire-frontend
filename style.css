@@ -1,5 +1,6 @@
 .exit {
     background-image: url(img/ground.png);
+    content: url(img/exit-arch.png);
 }
 
 .entrance {
@@ -15,27 +16,23 @@
 }
 
 .black {
-    background-image: url(img/darkness.gif);
+    background-image: url(img/unseen.png);
 }
 
 .floor {
     background-image: url(img/ground.png);
-    position: relative;
+}
+
+.chest {
+    content: url(img/gold-chest.png);
+}
+
+.tree {
+    content: url(img/tree.png);
 }
 
 .wall {
-    background-image: url(img/water.gif);
-    position: relative;
-}
-
-.wall::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0,0,0,0.3);
-    content: "";
+    background-image: url(img/water.png);
 }
 
 .player {
