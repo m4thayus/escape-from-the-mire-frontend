@@ -68,6 +68,14 @@ class Level {
                 exit_row[k-1].type = "wall";
             }
         }
+        for (let rowNumber = 1; rowNumber < this.map.length - 1; rowNumber++){
+            for (let columnNumber = 1; columnNumber < this.map[rowNumber].length -1; columnNumber++) {
+                let cell = this.map[rowNumber][columnNumber]
+                if (cell.type === "wall") {
+                    cell.type = (Math.random() < 0.08) ? "floor" : "wall"
+                }
+            }
+        }
         user = new User();
     }
 
