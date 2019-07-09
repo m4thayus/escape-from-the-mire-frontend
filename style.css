@@ -15,8 +15,9 @@
     height: 16px;
 }
 
-.black {
-    background-image: url(img/unseen.png);
+
+.black .moster {
+    content: url(img/unseen.png);
 }
 
 .floor {
@@ -62,6 +63,13 @@
 }
 
 .monster {
-    content: url(img/character/thief.gif);
-    background-image: url(img/ground.png); 
+    content: url(img/character/thief.gif); 
+}
+
+.tentacle {
+    content: url(img/monster/blood-tentacle.png);
+}
+
+.black {
+    content: url(img/unseen.png);
 }
