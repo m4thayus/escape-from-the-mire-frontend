@@ -106,10 +106,10 @@ class Level {
                     } else if (values.find(cord => cord[0] === x && cord[1] === y)) {
                         const tile = level[y][x];
                         level[y][x].status = 'show'
-                        domMap += `<div class="tile ${tile.type}"></div>`;
+                        domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
                     } else if (level[y][x].status === 'show'){
                         const tile = level[y][x];
-                        domMap += `<div class="tile ${tile.type}"></div>`;
+                        domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
                     } else {
                         domMap += `<div class="tile black"></div>`;
                     }

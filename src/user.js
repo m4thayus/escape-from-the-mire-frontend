@@ -10,15 +10,19 @@ class User {
         this.moveX = 0
         this.moveY = 0
         switch (event.key){
+            case 'ArrowUp':
             case 'w':
                 this.moveY = -1
                 break;
+            case 'ArrowDown':
             case 's':
                 this.moveY = 1
                 break;
+            case 'ArrowLeft':
             case 'a':
                 this.moveX = -1
                 break;
+            case 'ArrowRight':
             case 'd':
                 this.moveX = 1
                 break;
