@@ -1,0 +1,44 @@
+.exit {
+    background-image: url(img/ground.png);
+}
+
+.entrance {
+    background-image: url(img/ground.png);
+}
+.row {
+    display: flex;
+}
+
+.tile {
+    width: 16px;
+    height: 16px;
+}
+
+.black {
+    background-image: url(img/darkness.gif);
+}
+
+.floor {
+    background-image: url(img/ground.png);
+    position: relative;
+}
+
+.wall {
+    background-image: url(img/water.gif);
+    position: relative;
+}
+
+.wall::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.3);
+    content: "";
+}
+
+.player {
+    content: url(img/character/archer.gif);
+    background-image: url(img/ground.png);
+}
