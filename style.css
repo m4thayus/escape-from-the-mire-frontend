@@ -60,3 +60,8 @@
     content: url(img/character/kublai.png);
     background-image: url(img/ground.png);
 }
+
+.monster {
+    content: url(img/character/thief.gif);
+    background-image: url(img/ground.png); 
+}

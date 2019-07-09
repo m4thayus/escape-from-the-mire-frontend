@@ -99,17 +99,9 @@ class Level {
                 if (cell.type === "floor" && cell.texture === null) {
                     cell.texture = (Math.random() < 0.001) ? "blood" : null
                 }
-            }
-        }
-    }
-
-    randomMonster(){
-        for (let rowNumber = 1; rowNumber < this.map.length - 1; rowNumber++){
-            for (let columnNumber = 1; columnNumber < this.map[rowNumber].length -1; columnNumber++) {
-                let cell = this.map[rowNumber][columnNumber]
-                if (cell.type === "floor") {
-                    if (Math.random() < 0.02) {
-                        monster = new Monster(rowNumber, columnNumber)
+                if (cell.type === "floor" && cell.texture === null) {
+                    if (Math.random() < 0.001) {
+                        new Monster(rowNumber, columnNumber)
                     }
                 }
             }
@@ -120,7 +112,8 @@ class Level {
     generateMap(){
         let domMap = "<div>";
         let userVisionCords = Object.values(user.vision)
-        
+        let monsterCords = Monster.allMonsterCords()
+
         for (let y = 0; y < level.length; y++) {
             domMap += "<div class='row'>";
             for (let x = 0; x < level[y].length; x++) {
@@ -129,6 +122,8 @@ class Level {
                 } else if (y == user.kublaiY && x == user.kublaiX){
                     level[y][x].status = 'show'
                     domMap += `<div class="tile kublai"></div>`;
+                } else if (monsterCords.find(cord => cord[0] === x && cord[1] === y)) {
+                    domMap += `<div class="tile monster"></div>`;
                 } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
                     const tile = level[y][x];
                     level[y][x].status = 'show'
