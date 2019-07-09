@@ -20,15 +20,14 @@ class Level {
     }
 
     generateLevel(raw_maze) { 
-        // for (let y = 0; y < this.height; y++) {
-        //     const row = [];
-        //     for (let x = 0; x < this.width; x++) {
-        //         let type = (Math.random() < 0.75) ? "floor" : "wall"
-        //         let newCell = new Cell(type)
-        //         row.push(newCell)
-        //     }
-        // this.map.push(row)
+        this.parseRawMaze(raw_maze)
+        this.findEntranceAndExit()
+        this.randomWallToFloor()
+        user = new User();
+    }
 
+    // parses raw string from HTML into cells
+    parseRawMaze(raw_maze) {
         let last_row_end = 0;
         for (let i = 0; i < raw_maze.length; i++) {
             const char = raw_maze[i];
@@ -48,7 +47,10 @@ class Level {
             }
         }
         this.map[this.map.length - 1].push(new Cell("wall"));
+    }
 
+    // defines entrance and exit of maze
+    findEntranceAndExit(){
         let entrance_row = this.map[this.map.length - 1];
         let exit_row = this.map[0];
 
@@ -68,63 +70,49 @@ class Level {
                 exit_row[k-1].type = "wall";
             }
         }
+    }
+
+    // random chance to convert an interior wall to floor
+    randomWallToFloor(){
         for (let rowNumber = 1; rowNumber < this.map.length - 1; rowNumber++){
             for (let columnNumber = 1; columnNumber < this.map[rowNumber].length -1; columnNumber++) {
                 let cell = this.map[rowNumber][columnNumber]
                 if (cell.type === "wall") {
                     cell.type = (Math.random() < 0.08) ? "floor" : "wall"
-                    cell.texture = ""
+                    if (cell.type === 'floor') {
+                        cell.texture = ""
+                    }
                 }
             }
         }
-        user = new User();
     }
 
-     generateMap(){
+    // Converts map into HTML elements
+    generateMap(){
         let domMap = "<div>";
-        let x = [user.x, user.y]
-        let hash = {
-            top: [x[0],x[1]-1],
-            topRight: [x[0]+1,x[1]- 1],
-            right: [x[0]+ 1,x[1]],
-            bottomRight: [x[0]+1,x[1]+1],
-            bottom: [x[0],x[1]+1],
-            bottomLeft: [x[0]-1,x[1]+1],
-            left: [x[0]-1,x[1]],
-            topLeft: [x[0]-1,x[1]-1],
-            // topFar: [x[0], x[1]-2],
-            // topLeftFar: [x[0]-1, x[1]-2],
-            // topRightFar: [x[0]+1, x[1]-2],
-            // bottomFar: [x[0], x[1]+2],
-            // bottomLeftFar: [x[0]-1, x[1]+2],
-            // bottomRightFar: [x[0]+1, x[1]+2],
-        }
-        let values = Object.values(hash)
+
+        let userVisionCords = Object.values(user.vision)
         for (let y = 0; y < level.length; y++) {
-            const row = level[y];
             domMap += "<div class='row'>";
-            
             for (let x = 0; x < level[y].length; x++) {
-                    if (y == user.y && x == user.x) {
-                        level[y][x].type = 'floor'
-                        domMap += `<div class="tile player"></div>`;
-                    // } else if (y === exit.y && x === exit.x) {
-                    //     domMap += `<div class="tile exit"></div>`;
-                    } else if (values.find(cord => cord[0] === x && cord[1] === y)) {
-                        const tile = level[y][x];
-                        level[y][x].status = 'show'
-                        domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
-                    } else if (level[y][x].status === 'show'){
-                        const tile = level[y][x];
-                        domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
-                    } else {
-                        domMap += `<div class="tile black"></div>`;
-                    }
+                if (y == user.y && x == user.x) {
+                    level[y][x].type = 'floor'
+                    domMap += `<div class="tile player"></div>`;
+                } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
+                    const tile = level[y][x];
+                    level[y][x].status = 'show'
+                    domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
+                } else if (level[y][x].status === 'show'){
+                    const tile = level[y][x];
+                    domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
+                } else {
+                    domMap += `<div class="tile black"></div>`;
+                }
             }
             domMap += "</div>";
-    
+
         domMap += "</div>";}
         
         document.getElementById("app").innerHTML = domMap;
-        }
+    }
 }
