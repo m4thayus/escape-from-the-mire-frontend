@@ -85,6 +85,10 @@ class User {
                     console.log("CHEST COLLISION")
                     level[this.y + this.moveY][this.x + this.moveX].texture = null
                 }
+                if (level[this.y + this.moveY][this.x + this.moveX].texture === 'blood') {
+                    console.log("BLOOD COLLISION")
+                    level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
+                }
                 this.kublaiY = this.y
                 this.kublaiX = this.x
                 this.x += this.moveX
