@@ -73,6 +73,7 @@ class Level {
                 let cell = this.map[rowNumber][columnNumber]
                 if (cell.type === "wall") {
                     cell.type = (Math.random() < 0.08) ? "floor" : "wall"
+                    cell.texture = ""
                 }
             }
         }
@@ -90,7 +91,13 @@ class Level {
             bottom: [x[0],x[1]+1],
             bottomLeft: [x[0]-1,x[1]+1],
             left: [x[0]-1,x[1]],
-            topLeft: [x[0]-1,x[1]-1]
+            topLeft: [x[0]-1,x[1]-1],
+            // topFar: [x[0], x[1]-2],
+            // topLeftFar: [x[0]-1, x[1]-2],
+            // topRightFar: [x[0]+1, x[1]-2],
+            // bottomFar: [x[0], x[1]+2],
+            // bottomLeftFar: [x[0]-1, x[1]+2],
+            // bottomRightFar: [x[0]+1, x[1]+2],
         }
         let values = Object.values(hash)
         for (let y = 0; y < level.length; y++) {
