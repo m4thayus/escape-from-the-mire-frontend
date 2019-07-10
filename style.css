@@ -51,17 +51,29 @@
     content: url(img/rock.png);
 }
 
-/* Entities */
+/* Character Entities */
 
-.player {
+.player-archer {
     content: url(img/character/archer.gif);
-    background-image: url(img/ground.png);
+}
+
+.player-paladin {
+    content: url(img/character/paladin.gif);
+}
+
+.player-sage {
+    content: url(img/character/sage.gif);
+}
+
+.player-thief {
+    content: url(img/character/thief.gif);
 }
 
 .kublai {
     content: url(img/character/kublai.png);
-    background-image: url(img/ground.png);
 }
+
+/* Monster Entities */
 
 .tentacle {
     content: url(img/monster/blood-tentacle.png);

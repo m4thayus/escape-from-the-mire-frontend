@@ -24,7 +24,7 @@ class Level {
         this.findEntranceAndExit()
         this.randomWallToFloor()
         this.randomFloorToUniq()
-        user = new User
+        user = new User("paladin")
         this.randomUserPosition()
     }
 
@@ -140,10 +140,12 @@ class Level {
             for (let x = user.x - 9; x < user.x + 9; x++) {
                 if (!!level[y] && !!level[y][x]) {
                     if (y == user.y && x == user.x) {
-                        domMap += `<div class="tile player"></div>`;
+                        const tile = level[y][x];
+                        domMap += `<div class="tile ${tile.type} player-${user.charClass}"></div>`;
                     } else if (y == user.kublaiY && x == user.kublaiX){
+                        const tile = level[y][x];
                         level[y][x].status = 'show'
-                        domMap += `<div class="tile kublai"></div>`;
+                        domMap += `<div class="tile ${tile.type} kublai"></div>`;
                     } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
                         const tile = level[y][x];
                         level[y][x].status = 'show'

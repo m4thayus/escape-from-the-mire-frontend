@@ -1,5 +1,6 @@
 class User {
-    constructor(){
+    constructor(charClass){
+        this.charClass = charClass
         this.y = null
         this.x = null
         this.kublaiY = null
