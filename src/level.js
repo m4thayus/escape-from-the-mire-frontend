@@ -145,9 +145,6 @@ class Level {
                     } else if (y == user.kublaiY && x == user.kublaiX){
                         level[y][x].status = 'show'
                         domMap += `<div class="tile kublai"></div>`;
-                    // } else if (level[y][x].status === 'show' && monsters.some(monster => monster.x === x && monster.y === y)) {
-                    //     let monster = monsters.find(monster => monster.x === x && monster.y === y)
-                    //     domMap += `<div class="tile ${monster.type}"></div>`;
                     } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
                         const tile = level[y][x];
                         level[y][x].status = 'show'
