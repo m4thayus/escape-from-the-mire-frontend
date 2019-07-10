@@ -1,11 +1,3 @@
-.exit {
-    background-image: url(img/ground.png);
-    content: url(img/exit-arch.png);
-}
-
-.entrance {
-    background-image: url(img/ground.png);
-}
 .row {
     display: flex;
 }
@@ -15,8 +7,19 @@
     height: 30px;
 }
 
+/* Floor Tiles  */
+
 .floor {
     background-image: url(img/ground.png);
+}
+
+.entrance {
+    background-image: url(img/ground.png);
+}
+
+.exit {
+    background-image: url(img/ground.png);
+    content: url(img/exit-arch.png);
 }
 
 .chest {
@@ -25,6 +28,12 @@
 
 .blood {
     content: url(img/blood.png);
+}
+
+/* Wall Tiles */
+
+.wall {
+    background-image: url(img/water.png);
 }
 
 .tree {
@@ -43,9 +52,7 @@
     content: url(img/rock.png);
 }
 
-.wall {
-    background-image: url(img/water.png);
-}
+/* Entities */
 
 .player {
     content: url(img/character/archer.gif);
@@ -63,23 +70,22 @@
 
 .skeleton {
     content: url(img/monster/skeleton.png); 
-    background-image: url(img/ground.png);
 }
 
-.crawler {
-    content: url(img/monster/crawler.png); 
-    background-image: url(img/ground.png);
+.spider {
+    content: url(img/monster/spider.png); 
 }
 
-.wraith {
-    content: url(img/monster/wraith.png); 
-    background-image: url(img/ground.png);
+.lich {
+    content: url(img/monster/lich.png); 
+}
+
+/* Unseen Tiles */
+
+.fog {
+    content: url(img/fog.png);
 }
 
 .black {
-    content: url(img/unseen.png);
-}
-
-.black .monster {
     content: url(img/unseen.png);
 }
