@@ -131,7 +131,7 @@ class Level {
 
     // Converts map into HTML elements
     generateMap(){
-        let domMap = "<div>";
+        let domMap = "";
         let userVisionCords = Object.values(user.vision)
         let monsters = Monster.all
 
@@ -172,7 +172,7 @@ class Level {
                 }
             }
             domMap += "</div>";
-            domMap += "</div>";
+            // domMap += "</div>";
         }
         document.getElementById("app").innerHTML = domMap;
     }

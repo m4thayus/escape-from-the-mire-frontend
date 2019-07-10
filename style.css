@@ -1,3 +1,14 @@
+#header {
+    margin: 0 auto;
+    width: 540px;
+    text-align: center;
+}
+
+#app {
+    width: 540px;
+    margin: 0 auto;
+}
+
 .row {
     display: flex;
 }
