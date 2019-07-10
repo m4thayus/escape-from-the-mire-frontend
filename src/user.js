@@ -1,5 +1,6 @@
 class User {
-    constructor(){
+    constructor(charClass){
+        this.charClass = charClass
         this.y = null
         this.x = null
         this.kublaiY = null
@@ -45,8 +46,10 @@ class User {
                 this.moveX = 1
                 break;
         }
+
+        Monster.takeTurn(); 
         
-        if (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x)  {
+        if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
             this.kublaiY = this.y
             this.kublaiX = this.x
             this.x += this.moveX
@@ -54,12 +57,10 @@ class User {
      
             levelObj.generateMap()
     
-            this.y = Math.floor(Math.random() * 20)
-            this.x = Math.floor(Math.random() * 20)
-            exit.y = Math.floor(Math.random() * 20)
-            exit.x = Math.floor(Math.random() * 20)
+            // Unused until front-end controls map size
             levelObj = new Level(30, 30)
             level = levelObj.map
+
             this.updateVision()	
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {

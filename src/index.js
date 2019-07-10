@@ -1,4 +1,6 @@
-
+function title() {
+    return document.querySelector("h1");
+}
 function startButton() {
 	return startButton = document.getElementById('start-button')
 }
@@ -13,7 +15,8 @@ startButton().addEventListener('click', startGame)
 function startGame(event){
 	levelObj = new Level(30, 30)
 	level = levelObj.map
-	message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
+    message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
+    title().style = "display: none;" 
 	event.target.remove()
 }
 

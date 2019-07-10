@@ -24,7 +24,7 @@ class Level {
         this.findEntranceAndExit()
         this.randomWallToFloor()
         this.randomFloorToUniq()
-        user = new User
+        user = new User("paladin")
         this.randomUserPosition()
     }
 
@@ -58,14 +58,14 @@ class Level {
 
         for (let k = 0; k < entrance_row.length; k++) {
             if (entrance_row[k].type === "floor" && entrance_row[k-1].type === "floor" && entrance_row[k+1].type === "floor") {
-                entrance_row[k].type = "entrance";
-                entrance.y = this.map.length - 2
+                entrance_row[k].texture = "entrance";
+                entrance.y = this.map.length - 1
                 entrance.x = k;
                 entrance_row[k-1].type = "wall";
                 entrance_row[k+1].type = "wall";
             }
             if (exit_row[k].type === "floor" && exit_row[k-1].type === "floor" && exit_row[k+1].type === "floor") {
-                exit_row[k].type = "exit";
+                exit_row[k].texture = "exit";
                 exit.y = 0;
                 exit.x = k;
                 exit_row[k+1].type = "wall";
@@ -131,9 +131,8 @@ class Level {
 
     // Converts map into HTML elements
     generateMap(){
-        let domMap = "<div>";
+        let domMap = "";
         let userVisionCords = Object.values(user.vision)
-        // let monsterCords = Monster.allMonsterCords()
         let monsters = Monster.all
 
         for (let y = user.y - 9; y < user.y + 9; y++) {
@@ -141,13 +140,12 @@ class Level {
             for (let x = user.x - 9; x < user.x + 9; x++) {
                 if (!!level[y] && !!level[y][x]) {
                     if (y == user.y && x == user.x) {
-                        domMap += `<div class="tile player"></div>`;
+                        const tile = level[y][x];
+                        domMap += `<div class="tile ${tile.type} player-${user.charClass}"></div>`;
                     } else if (y == user.kublaiY && x == user.kublaiX){
+                        const tile = level[y][x];
                         level[y][x].status = 'show'
-                        domMap += `<div class="tile kublai"></div>`;
-                    // } else if (level[y][x].status === 'show' && monsters.some(monster => monster.x === x && monster.y === y)) {
-                    //     let monster = monsters.find(monster => monster.x === x && monster.y === y)
-                    //     domMap += `<div class="tile ${monster.type}"></div>`;
+                        domMap += `<div class="tile ${tile.type} kublai"></div>`;
                     } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
                         const tile = level[y][x];
                         level[y][x].status = 'show'
@@ -174,7 +172,7 @@ class Level {
                 }
             }
             domMap += "</div>";
-            domMap += "</div>";
+            // domMap += "</div>";
         }
         document.getElementById("app").innerHTML = domMap;
     }
