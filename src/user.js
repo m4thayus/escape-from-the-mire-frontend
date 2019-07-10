@@ -85,7 +85,8 @@ class User {
     // user movement and vision methods
 
     updateVision(){
-        this.vision = {
+       let normalVision = {
+            // normal vision
             start: [this.x, this.y],
             top: [this.x,this.y-1],
             topRight: [this.x+1,this.y- 1],
@@ -95,7 +96,33 @@ class User {
             bottomLeft: [this.x-1,this.y+1],
             left: [this.x-1,this.y],
             topLeft: [this.x-1,this.y-1],
-        } 
+        }
+        
+       let extendedVision = {
+            // extended vision
+            topLeftFar: [this.x-2,this.y-2],
+            topLeftCenterFar: [this.x-1,this.y-2],
+            topCenterFar: [this.x,this.y-2],
+            topRightCenterFar: [this.x+1,this.y-2],
+            topRightFar: [this.x+2,this.y-2],
+            rightTopFar: [this.x+2,this.y-1],
+            rightFar: [this.x+2,this.y],
+            rightBottomFar: [this.x+2,this.y+1],
+            bottomRightFar: [this.x+2,this.y+2],
+            bottomRightCenter: [this.x+1,this.y+2],
+            bottomCenterFar: [this.x,this.y+2],
+            bottomLeftCenter: [this.x-1,this.y+2],
+            bottomLeftFar: [this.x-2,this.y+2],
+            leftBottomCenter: [this.x-2,this.y+1],
+            leftFar: [this.x-2,this.y],
+            leftCenterTop: [this.x-2,this.y-1],
+        }
+
+        if (this.charClass === 'archer') {
+            this.vision = {...normalVision, ...extendedVision}
+        } else {
+            this.vision = {...normalVision}
+        }
     }
     
     movement(event) {
