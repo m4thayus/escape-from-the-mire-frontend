@@ -100,7 +100,7 @@ class Level {
                     cell.texture = (Math.random() < 0.001) ? "blood" : null
                 }
                 if (cell.type === "floor" && cell.texture === null) {
-                    if (Math.random() < 0.1) {
+                    if (Math.random() < 0.01) {
                         new Monster(rowNumber, columnNumber)
                     }
                 }
@@ -112,31 +112,48 @@ class Level {
     generateMap(){
         let domMap = "<div>";
         let userVisionCords = Object.values(user.vision)
-        let monsterCords = Monster.allMonsterCords()
+        // let monsterCords = Monster.allMonsterCords()
+        let monsters = Monster.all
 
-        for (let y = 0; y < level.length; y++) {
+        for (let y = user.y - 9; y < user.y + 9; y++) {
             domMap += "<div class='row'>";
-            for (let x = 0; x < level[y].length; x++) {
-                if (y == user.y && x == user.x) {
-                    domMap += `<div class="tile player"></div>`;
-                } else if (y == user.kublaiY && x == user.kublaiX){
-                    level[y][x].status = 'show'
-                    domMap += `<div class="tile kublai"></div>`;
-                } else if (monsterCords.find(cord => cord[0] === x && cord[1] === y)) {
-                    domMap += `<div data-x='${x}' data-y='${y}' class="tile black monster"></div>`;
-                } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
-                    const tile = level[y][x];
-                    level[y][x].status = 'show'
-                    domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
-                } else if (level[y][x].status === 'show'){
-                    const tile = level[y][x];
-                    domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
+            for (let x = user.x - 9; x < user.x + 9; x++) {
+                if (!!level[y] && !!level[y][x]) {
+                    if (y == user.y && x == user.x) {
+                        domMap += `<div class="tile player"></div>`;
+                    } else if (y == user.kublaiY && x == user.kublaiX){
+                        level[y][x].status = 'show'
+                        domMap += `<div class="tile kublai"></div>`;
+                    // } else if (level[y][x].status === 'show' && monsters.some(monster => monster.x === x && monster.y === y)) {
+                    //     let monster = monsters.find(monster => monster.x === x && monster.y === y)
+                    //     domMap += `<div class="tile ${monster.type}"></div>`;
+                    } else if (userVisionCords.find(cord => cord[0] === x && cord[1] === y)) {
+                        const tile = level[y][x];
+                        level[y][x].status = 'show'
+                        if (monsters.some(monster => monster.x === x && monster.y === y)) {
+                            let monster = monsters.find(monster => monster.x === x && monster.y === y)
+                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type}"></div>`;
+                        } else {
+                            domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
+                        }
+                    } else if (level[y][x].status === 'show'){
+                        const tile = level[y][x];
+                        if (monsters.some(monster => monster.x === x && monster.y === y)) {
+                            let monster = monsters.find(monster => monster.x === x && monster.y === y)
+                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type}"></div>`;
+                        } else {
+                            domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
+                        }
+                    } else {
+                        domMap += `<div class="tile black"></div>`;
+                    }
                 } else {
                     domMap += `<div class="tile black"></div>`;
                 }
             }
-        domMap += "</div>";
-        domMap += "</div>";}
+            domMap += "</div>";
+            domMap += "</div>";
+        }
         document.getElementById("app").innerHTML = domMap;
     }
 }
