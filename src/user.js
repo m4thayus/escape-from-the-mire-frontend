@@ -175,8 +175,8 @@ class User {
                 this.health -= 10;
             }
 
-            console.log(this.health)
-            console.log(this.score)
+            console.log("Health:", this.health)
+            console.log("Score:", this.score)
         }
     }
     validateMovement(){
@@ -194,6 +194,7 @@ class User {
             level = levelObj.map
 
             this.updateVision()	
+            this.health = 50;
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
             
@@ -210,7 +211,7 @@ class User {
                 if (level[this.y + this.moveY][this.x + this.moveX].texture === 'chest') {
                     this.score *= 2
                     level[this.y + this.moveY][this.x + this.moveX].texture = null
-                    console.log(this.score)
+                    console.log("Score:", this.score)
                 }
                 if (level[this.y + this.moveY][this.x + this.moveX].texture === 'blood') {
                     level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
@@ -219,7 +220,7 @@ class User {
                         this.health -= 10
                     }
                     this.score -= 50
-                    console.log(this.score)
+                    console.log("Score:", this.score)
                 }
                 
                 this.updateVision()	
