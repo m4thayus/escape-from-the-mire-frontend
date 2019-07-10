@@ -8,6 +8,10 @@ function startButton() {
 function message() {
 	return message = document.getElementById('message')
 }
+
+function createUserForm() {
+	return document.getElementById('create-user')
+}
 let messageArray = ["Why do you even bother trying?", "Give up."]
 
 startButton().addEventListener('click', startGame)
