@@ -82,6 +82,10 @@
 
 /* Unseen Tiles */
 
+.fog {
+    content: url(img/fog.png);
+}
+
 .black {
     content: url(img/unseen.png);
 }

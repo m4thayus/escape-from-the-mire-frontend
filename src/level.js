@@ -145,7 +145,8 @@ class Level {
                             domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
                         }
                     } else {
-                        domMap += `<div class="tile black"></div>`;
+                        const tile = level[y][x];
+                        domMap += `<div class="tile ${tile.type} fog"></div>`;
                     }
                 } else {
                     domMap += `<div class="tile black"></div>`;
