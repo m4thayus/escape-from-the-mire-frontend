@@ -15,7 +15,7 @@ class Monster {
     static takeTurn() {
         for (let monster of Monster.all) {
             let direction = Math.random() < 0.5 ? "y" : "x"
-            let move =  Math.random() < 0.5 ? -1 : 1
+            let move = user[direction] < monster[direction] ? -1 : 1
             while (!monster.validMove(direction, move)) {
                 direction = Math.random() < 0.5 ? "y" : "x"
                 move =  Math.random() < 0.5 ? -1 : 1
