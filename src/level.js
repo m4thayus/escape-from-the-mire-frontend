@@ -24,7 +24,8 @@ class Level {
         this.findEntranceAndExit()
         this.randomWallToFloor()
         this.randomFloorToUniq()
-        user = new User();
+        user = new User
+        this.randomUserPosition()
     }
 
     // parses raw string from HTML into cells
@@ -102,6 +103,26 @@ class Level {
                 if (cell.type === "floor" && cell.texture === null) {
                     if (Math.random() < 0.01) {
                         new Monster(rowNumber, columnNumber)
+                    }
+                }
+            }
+        }
+    }
+
+    randomUserPosition(){
+        while (user.x === null && user.y === null) {
+            for (let rowNumber = Math.floor(this.map.length / 2 - 10); rowNumber < Math.floor(this.map.length / 2 + 10); rowNumber++){
+                for (let columnNumber = Math.floor(this.map[rowNumber].length / 2 - 10); columnNumber < Math.floor(this.map[rowNumber].length / 2 + 10); columnNumber++) {
+                    let cell = this.map[rowNumber][columnNumber]
+                    if (cell.type === "floor") {
+                        if (Math.random() < 0.01) {
+                            user.x = columnNumber
+                            user.y = rowNumber
+                            user.kublaiX = columnNumber
+                            user.kublaiY = rowNumber
+                            user.updateVision()
+                            return 
+                        }
                     }
                 }
             }

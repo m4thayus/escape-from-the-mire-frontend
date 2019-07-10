@@ -1,28 +1,12 @@
 class User {
     constructor(){
-        this.y = entrance.y
-        this.x = entrance.x
-        this.kublaiY = entrance.y +1
-        this.kublaiX = entrance.x 
+        this.y = null
+        this.x = null
+        this.kublaiY = null
+        this.kublaiX = null
         this.moveX = 0
         this.moveY = 0
         this.vision = {
-            start: [this.x, this.y],
-            top: [this.x,this.y-1],
-            topRight: [this.x+1,this.y- 1],
-            right: [this.x+ 1,this.y],
-            bottomRight: [this.x+1,this.y+1],
-            bottom: [this.x,this.y+1],
-            bottomLeft: [this.x-1,this.y+1],
-            left: [this.x-1,this.y],
-            topLeft: [this.x-1,this.y-1],
-            // increases Field of view by 3 at top and 3 at bottom
-            topFar: [this.x, this.y-2],
-            topLeftFar: [this.x-1, this.y-2],
-            topRightFar: [this.x+1, this.y-2],
-            bottomFar: [this.x, this.y+2],
-            bottomLeftFar: [this.x-1, this.y+2],
-            bottomRightFar: [this.x+1, this.y+2],
         }
     }
 
@@ -89,6 +73,9 @@ class User {
                     console.log("BLOOD COLLISION")
                     level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
                 }
+                if (Monster.all.some(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)) {
+                    console.log("Monster COLLISION")
+                }
                 this.kublaiY = this.y
                 this.kublaiX = this.x
                 this.x += this.moveX
@@ -97,6 +84,8 @@ class User {
                 levelObj.generateMap()
             }
             catch(err) {
+                console.log(err)
+                console.log(user.x, user.y)
             }
         }		
     }

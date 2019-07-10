@@ -1,6 +1,6 @@
 class Cell {
     constructor(type){
-        this.status = 'hidden' 
+        this.status = 'show' 
         this.type = type
         if (type === 'wall') {
             if (Math.random() < 0.75) {
