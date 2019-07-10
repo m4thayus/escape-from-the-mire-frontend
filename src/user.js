@@ -159,6 +159,26 @@ class User {
         }
     }
 
+    checkMonsterCollision() {
+        let mob = Monster.all.find(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)
+        if (!!mob) {
+            let roll = User.roll();
+            console.log("Roll:", roll)
+            if (roll === 1) {
+                this.health = 0;
+            } else if (roll >= 10) {
+                Monster.all = Monster.all.filter(monster => monster !== mob)
+                this.score += 100
+                console.log(`${this.name} killed a ${mob.type}!`) 
+            } else {
+                this.score += 50
+                this.health -= 10;
+            }
+
+            console.log(this.health)
+            console.log(this.score)
+        }
+    }
     validateMovement(){
         if ((this.health === 0) || (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
             this.kublaiY = this.y
@@ -176,14 +196,17 @@ class User {
             this.updateVision()	
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
-            this.kublaiY = this.y
-            this.kublaiX = this.x
-            this.x += this.moveX
-            this.y += this.moveY
-            Monster.takeTurn(); 
+            
 
             try {
-                let mob = Monster.all.find(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)
+                this.kublaiY = this.y
+                this.kublaiX = this.x
+                this.x += this.moveX
+                this.y += this.moveY
+                this.checkMonsterCollision()
+                Monster.takeTurn(); 
+                this.checkMonsterCollision()
+                
                 if (level[this.y + this.moveY][this.x + this.moveX].texture === 'chest') {
                     this.score *= 2
                     level[this.y + this.moveY][this.x + this.moveX].texture = null
@@ -196,23 +219,6 @@ class User {
                         this.health -= 10
                     }
                     this.score -= 50
-                    console.log(this.score)
-                }
-                if (!!mob) {
-                    let roll = User.roll();
-                    console.log("Roll:", roll)
-                    if (roll === 1) {
-                        this.health = 0;
-                    } else if (roll >= 10) {
-                        Monster.all = Monster.all.filter(monster => monster !== mob)
-                        this.score += 100
-                        console.log(`${this.name} killed a ${mob.type}!`) 
-                    } else {
-                        this.score += 50
-                        this.health -= 10;
-                    }
-
-                    console.log(this.health)
                     console.log(this.score)
                 }
                 
