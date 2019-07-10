@@ -45,6 +45,8 @@ class User {
                 this.moveX = 1
                 break;
         }
+
+        Monster.takeTurn(); 
         
         if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
             this.kublaiY = this.y
@@ -57,6 +59,7 @@ class User {
             // Unused until front-end controls map size
             levelObj = new Level(30, 30)
             level = levelObj.map
+
             this.updateVision()	
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {

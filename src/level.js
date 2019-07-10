@@ -133,7 +133,6 @@ class Level {
     generateMap(){
         let domMap = "<div>";
         let userVisionCords = Object.values(user.vision)
-        // let monsterCords = Monster.allMonsterCords()
         let monsters = Monster.all
 
         for (let y = user.y - 9; y < user.y + 9; y++) {
