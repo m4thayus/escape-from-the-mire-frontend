@@ -25,10 +25,15 @@ class Monster {
     }
 
     validMove(direction, move) {
-        if (direction === "y") {
-            return level[this.y + move][this.x].type === "floor" && level[this.y][this.x + move].texture !== "exit" && level[this.y][this.x + move].texture !== "entrance";
-        } else {
-            return level[this.y][this.x + move].type === "floor" && level[this.y][this.x + move].texture !== "exit" && level[this.y][this.x + move].texture !== "entrance";
+        try {
+            if (direction === "y") {
+                return level[this.y + move][this.x].type === "floor" && level[this.y + move][this.x].texture !== "exit" && level[this.y + move][this.x].texture !== "entrance";
+            } else {
+                return level[this.y][this.x + move].type === "floor" && level[this.y][this.x + move].texture !== "exit" && level[this.y][this.x + move].texture !== "entrance";
+            }
+        }
+        catch(err) {
+            console.log(level[this.y][this.x + move])
         }
     } 
 
