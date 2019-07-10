@@ -1,3 +1,4 @@
+// HTML selectors
 function title() {
     return document.querySelector("h1");
 }
@@ -9,34 +10,52 @@ function message() {
 function createUserForm() {
 	return document.getElementById('create-user')
 }
-let messageArray = ["Why do you even bother trying?", "Give up."]
 
-createUserForm().addEventListener('submit', handleFormSubmit)
-
-function handleFormSubmit(event){
-	event.preventDefault()
-
-	// create user
-	fetch('http://127.0.0.1:3000/users', {
-			method: 'POST', 
-			headers: {
-				'Content-Type': 'application/json',
-			}, 
-			body: JSON.stringify({name: this.username.value, score: 0, character_class: "paladin"})
-		})
-		.then(resp => resp.json())
-		.then(newUser => {
-			levelObj = new Level(30, 30)
-			level = levelObj.map
-			user = new User(newUser.character_class, newUser.name, newUser.id)
-			console.log(newUser)
-		})
-		.catch(err => console.log(err))
-
-    message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
-    title().style = "display: none;" 
-	event.target.remove()
+function addMovementListener() {
+	document.addEventListener('keydown', () => {
+		user.movement(event)
+	})
 }
+
+function currentScore(){
+	return document.getElementById('score')
+}
+
+function showScores(){
+	return document.getElementById('show-scores')
+}
+
+function app() {
+	return document.getElementById("app")
+}
+
+createUserForm().addEventListener('submit', User.createUser)
+showScores().addEventListener('click', handleShowScores)
+
+function handleShowScores(){
+	app().innerHTML = ""
+	User.getUsers()
+}
+
+let messageArray = [
+	"Why do you even bother trying?", 
+	"Give up.", 
+	"You are not even close.", 
+	"Pathetic.", 
+	"Nobody likes you",
+	"Does anybody even like you?",
+	"You can't reach your goals",
+	"Is this your life?",
+	"This is never what you wanted",
+	"You imagined you would be more succesful, didn't you?",
+	"Why even bother?",
+	"You are behind your peers",
+	"You disappoint your parents",
+	"You embarrass your friends",
+	"You am not good at anything",
+	"You cannot sleep at night",
+	"You will never accomplish anything of value in this life",
+]
 
 let levelObj
 let level
@@ -44,19 +63,3 @@ let entrance = {}
 let user
 let exit = {}
 
-document.addEventListener('keydown', () => {
-	user.movement(event)
-})
-
-
-// patch user
-// fetch('http://127.0.0.1:3000/users/3', {
-// 	method: 'PATCH', 
-// 	headers: {
-// 		'Content-Type': 'application/json',
-// 	}, 
-// 	body: JSON.stringify({id: 3, score: 150})
-// })
-// .then(resp => resp.json())
-// .then(json => console.log(json))
-// .catch(err => console.log(err))

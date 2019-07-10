@@ -175,6 +175,6 @@ class Level {
             }
             domMap += "</div>";
         }
-        document.getElementById("app").innerHTML = domMap;
+        app().innerHTML = domMap;
     }
 }
