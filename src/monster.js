@@ -4,16 +4,12 @@ class Monster {
         this.y = y
         if (Math.random() < 0.5) {
             this.type = "skeleton"
-        } else if (Math.random()< 0.8) {
-            this.type = "crawler"
+        } else if (Math.random()< 0.9) {
+            this.type = "spider"
         } else {
-            this.type = "wraith"
+            this.type = "lich"
         }
         Monster.all.push(this)
     }
-
-    // static allMonsterCords(){
-    //     return Monster.all.map(monster => [monster.x, monster.y, monster.type])
-    // }
 }
 Monster.all = []

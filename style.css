@@ -72,12 +72,12 @@
     content: url(img/monster/skeleton.png); 
 }
 
-.crawler {
-    content: url(img/monster/crawler.png); 
+.spider {
+    content: url(img/monster/spider.png); 
 }
 
-.wraith {
-    content: url(img/monster/wraith.png); 
+.lich {
+    content: url(img/monster/lich.png); 
 }
 
 /* Unseen Tiles */
