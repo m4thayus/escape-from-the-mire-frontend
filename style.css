@@ -14,12 +14,11 @@
 }
 
 .entrance {
-    background-image: url(img/ground.png);
+    content: url(img/arch.png);
 }
 
 .exit {
-    background-image: url(img/ground.png);
-    content: url(img/exit-arch.png);
+    content: url(img/arch.png);
 }
 
 .chest {

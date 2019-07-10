@@ -58,14 +58,14 @@ class Level {
 
         for (let k = 0; k < entrance_row.length; k++) {
             if (entrance_row[k].type === "floor" && entrance_row[k-1].type === "floor" && entrance_row[k+1].type === "floor") {
-                entrance_row[k].type = "entrance";
-                entrance.y = this.map.length - 2
+                entrance_row[k].texture = "entrance";
+                entrance.y = this.map.length - 1
                 entrance.x = k;
                 entrance_row[k-1].type = "wall";
                 entrance_row[k+1].type = "wall";
             }
             if (exit_row[k].type === "floor" && exit_row[k-1].type === "floor" && exit_row[k+1].type === "floor") {
-                exit_row[k].type = "exit";
+                exit_row[k].texture = "exit";
                 exit.y = 0;
                 exit.x = k;
                 exit_row[k+1].type = "wall";
