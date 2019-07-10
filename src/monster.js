@@ -26,9 +26,9 @@ class Monster {
 
     validMove(direction, move) {
         if (direction === "y") {
-            return level[this.y + move][this.x].type !== "wall";
+            return level[this.y + move][this.x].type === "floor" && level[this.y][this.x + move].texture !== "exit" && level[this.y][this.x + move].texture !== "entrance";
         } else {
-            return level[this.y][this.x + move].type !== "wall";
+            return level[this.y][this.x + move].type === "floor" && level[this.y][this.x + move].texture !== "exit" && level[this.y][this.x + move].texture !== "entrance";
         }
     } 
 
