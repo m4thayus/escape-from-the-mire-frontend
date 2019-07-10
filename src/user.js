@@ -1,13 +1,17 @@
 class User {
-    constructor(charClass){
+    constructor(charClass, name, id){
         this.charClass = charClass
+        this.score = 0
+        this.name = name
+        this.id = id
+        
         this.y = null
         this.x = null
         this.kublaiY = null
         this.kublaiX = null
         this.moveX = 0
         this.moveY = 0
-        this.score = 0
+
         this.vision = {
         }
     }

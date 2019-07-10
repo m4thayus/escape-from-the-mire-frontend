@@ -24,7 +24,7 @@ class Level {
         this.findEntranceAndExit()
         this.randomWallToFloor()
         this.randomFloorToUniq()
-        user = new User("paladin")
+        // user = new User("paladin")
         this.randomUserPosition()
     }
 
@@ -110,6 +110,8 @@ class Level {
     }
 
     randomUserPosition(){
+        user.x = null 
+        user.y = null
         while (user.x === null && user.y === null) {
             for (let rowNumber = Math.floor(this.map.length / 2 - 10); rowNumber < Math.floor(this.map.length / 2 + 10); rowNumber++){
                 for (let columnNumber = Math.floor(this.map[rowNumber].length / 2 - 10); columnNumber < Math.floor(this.map[rowNumber].length / 2 + 10); columnNumber++) {
