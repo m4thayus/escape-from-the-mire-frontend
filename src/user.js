@@ -4,6 +4,7 @@ class User {
         this.score = 0
         this.name = name
         this.id = id
+        this.health = 50
         
         this.y = null
         this.x = null
@@ -82,8 +83,14 @@ class User {
         ol.appendChild(li)
     }
 
-    // user movement and vision methods
+    // user rolls of d20
+    static roll() {
+        let min = Math.ceil(0);
+        let max = Math.floor(20);
+        return Math.ceil(Math.random() * (max - min)) + min;
+    }
 
+    // user movement and vision methods
     updateVision(){
        let normalVision = {
             // normal vision
@@ -153,7 +160,7 @@ class User {
     }
 
     validateMovement(){
-        if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
+        if ((this.health === 0) || (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
             this.kublaiY = this.y
             this.kublaiX = this.x
             this.x += this.moveX
@@ -169,30 +176,46 @@ class User {
             this.updateVision()	
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
+            this.kublaiY = this.y
+            this.kublaiX = this.x
+            this.x += this.moveX
+            this.y += this.moveY
             Monster.takeTurn(); 
+
             try {
+                let mob = Monster.all.find(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)
                 if (level[this.y + this.moveY][this.x + this.moveX].texture === 'chest') {
-                    console.log("CHEST COLLISION")
-                    this.score += 50
-                    console.log(this.score)
+                    this.score *= 2
                     level[this.y + this.moveY][this.x + this.moveX].texture = null
+                    console.log(this.score)
                 }
                 if (level[this.y + this.moveY][this.x + this.moveX].texture === 'blood') {
-                    console.log("BLOOD COLLISION")
-                    this.score += 50
-                    console.log(this.score)
                     level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
+                    let roll = User.roll();
+                    if (roll !== 20) {
+                        this.health -= 10
+                    }
+                    this.score -= 50
+                    console.log(this.score)
                 }
-                if (Monster.all.some(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)) {
-                    console.log("Monster COLLISION")
-                    this.score += 50
+                if (!!mob) {
+                    let roll = User.roll();
+                    console.log("Roll:", roll)
+                    if (roll === 1) {
+                        this.health = 0;
+                    } else if (roll >= 10) {
+                        Monster.all = Monster.all.filter(monster => monster !== mob)
+                        this.score += 100
+                        console.log(`${this.name} killed a ${mob.type}!`) 
+                    } else {
+                        this.score += 50
+                        this.health -= 10;
+                    }
+
+                    console.log(this.health)
                     console.log(this.score)
                 }
                 
-                this.kublaiY = this.y
-                this.kublaiX = this.x
-                this.x += this.moveX
-                this.y += this.moveY
                 this.updateVision()	
                 levelObj.generateMap()
             }
