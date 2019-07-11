@@ -102,6 +102,10 @@
     content: url(img/monster/lich.png); 
 }
 
+.splat {
+    content: url(img/splat.png);
+}
+
 /* Unseen Tiles */
 
 .fog {

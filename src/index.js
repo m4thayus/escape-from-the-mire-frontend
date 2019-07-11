@@ -47,7 +47,7 @@ let messageArray = [
 	"You can't reach your goals",
 	"Is this your life?",
 	"This is never what you wanted",
-	"You imagined you would be more succesful, didn't you?",
+	"You imagined you would be more successful, didn't you?",
 	"Why even bother?",
 	"You are behind your peers",
 	"You disappoint your parents",

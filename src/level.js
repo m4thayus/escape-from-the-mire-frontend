@@ -143,7 +143,7 @@ class Level {
                 if (!!level[y] && !!level[y][x]) {
                     if (y == user.y && x == user.x) {
                         const tile = level[y][x];
-                        domMap += `<div class="tile ${tile.type} player-${user.charClass}"></div>`;
+                        domMap += `<div class="tile ${tile.type} player-${user.charClass} ${user.status}"></div>`;
                     } else if (y == user.kublaiY && x == user.kublaiX){
                         const tile = level[y][x];
                         level[y][x].status = 'show'
@@ -153,7 +153,7 @@ class Level {
                         level[y][x].status = 'show'
                         if (monsters.some(monster => monster.x === x && monster.y === y)) {
                             let monster = monsters.find(monster => monster.x === x && monster.y === y)
-                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type}"></div>`;
+                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type} ${monster.status}"></div>`;
                         } else {
                             domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
                         }
@@ -161,7 +161,7 @@ class Level {
                         const tile = level[y][x];
                         if (monsters.some(monster => monster.x === x && monster.y === y)) {
                             let monster = monsters.find(monster => monster.x === x && monster.y === y)
-                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type}"></div>`;
+                            domMap += `<div class="tile ${tile.type} ${tile.texture} ${monster.type} ${monster.status}"></div>`;
                         } else {
                             domMap += `<div class="tile ${tile.type} ${tile.texture}"></div>`;
                         }
