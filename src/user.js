@@ -4,9 +4,11 @@ class User {
         this.score = 0
         this.name = name
         this.id = id
+
         this.health = 50
         this.status = null
-        
+        if (this.charClass === 'paladin') this.health += 25
+
         this.y = null
         this.x = null
         this.kublaiY = null
@@ -25,24 +27,55 @@ class User {
         .then(resp => resp.json())
         .then(users => {
             users.sort((a,b) => b.score - a.score)
-            let ol = document.createElement('ol')
-            users.forEach(user => User.addUserToDom(user, ol))
-            app().appendChild(ol)
-            console.log(users)
+            let table = document.createElement('table')
+            table.classList.add('table', 'table-striped')
+            
+            let thead = document.createElement('thead')
+
+            let tr = document.createElement('tr')
+
+            let th1 = document.createElement('th')
+            th1.scope = 'col'
+            th1.innerText = "#"
+
+            let th2 = document.createElement('th')
+            th2.scope = 'col'
+            th2.innerText = "Username"
+
+            let th3 = document.createElement('th')
+            th3.scope = 'col'
+            th3.innerText = "Score"
+
+            let th4 = document.createElement('th')
+            th4.scope = 'col'
+            th4.innerText = "Class"
+
+            tr.append(th1, th2, th3, th4)
+            thead.append(tr)
+
+            let tbody = document.createElement('tbody')
+            for (let i = 0; i < 20; i++) {
+                User.addUserToDom(users[i], tbody, i)
+            }
+            table.append(tbody,thead)
+            app().appendChild(table)
         })
         .catch(err => console.log(err))
     }
 
     // create new User
     static createUser(event){
+        let name = this.username.value 
+
+        if (name.length === 0 || !name.trim()) name = "Dweeb"
+        
         event.preventDefault()
-    
         fetch('http://127.0.0.1:3000/users', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
                 }, 
-                body: JSON.stringify({name: this.username.value, score: 0, character_class: this.class.value})
+                body: JSON.stringify({name: name, score: 0, character_class: this.class.value})
             })
             .then(resp => resp.json())
             .then(newUser => {
@@ -50,6 +83,7 @@ class User {
                 level = levelObj.map
                 user = new User(newUser.character_class, newUser.name, newUser.id)
                 currentScore().innerText = 'Current Score: 0'
+                showHealth().innerText = `Health: ${user.health}`
                 showScores().remove()
             })
             .catch(err => console.log(err))
@@ -77,11 +111,24 @@ class User {
     }
 
     // update all user scores to dom
-    static addUserToDom(user, ol){
-        let li = document.createElement('li')
-        li.innerText = `Username: ${user.name} | Score: ${user.score} | Class: ${user.character_class}`
+    static addUserToDom(user, tbody, position){
+        let tr = document.createElement('tr')
+        
+        let th1 = document.createElement('th')
+        th1.scope = 'row'
+        th1.innerText = position + 1
 
-        ol.appendChild(li)
+        let td1 = document.createElement('td')
+        td1.innerText = user.name
+
+        let td2 = document.createElement('td')
+        td2.innerText = user.score
+
+        let td3 = document.createElement('td')
+        td3.innerText = user.character_class[0].toUpperCase() + user.character_class.slice(1)
+
+        tr.append(th1, td1, td2, td3)
+        tbody.append(tr)
     }
 
     // user rolls of d20
@@ -186,7 +233,7 @@ class User {
                 this.health -= 10;
                 console.log(`A ${mob.type} hit ${this.name}!`) 
             }
-
+            showHealth().innerText = `Health: ${this.health}`
             console.log("Health:", this.health)
             console.log("Score:", this.score)
             return !!mob
@@ -206,6 +253,7 @@ class User {
             let roll = User.roll();
             if (roll !== 20) {
                 this.health -= 10
+                showHealth().innerText = `Health: ${this.health}`
                 this.status = "splat"
             }
             this.score -= 50
@@ -216,9 +264,12 @@ class User {
     }
 
     validateMovement(){
-        if (this.health === 0 ||
-            (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) ||
-            (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x)){
+        if (this.health <= 0) {
+            alert('Heh, not even close :) You lose.')
+            window.location.reload()
+            return 
+        }
+        if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
 
             this.kublaiY = this.y
             this.kublaiX = this.x
