@@ -226,7 +226,12 @@ class User {
         }
     }
     validateMovement(){
-        if ((this.health === 0) || (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
+        if (this.health <= 0) {
+            alert('Heh, not even close :) You lose.')
+            window.location.reload()
+            return 
+        }
+        if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
             this.kublaiY = this.y
             this.kublaiX = this.x
             this.x += this.moveX
