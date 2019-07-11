@@ -1,7 +1,32 @@
+*, body, .container {
+    background-color: #1d1f21;
+}
+
 #header {
-    margin: 0 auto;
+    color: #e0e0e0;
+}
+
+#username {
+    background-color: dimgray;
+    color: #e0e0e0;
+}
+
+#select-archer, #select-paladin, #select-sage, #select-thief {
+    background-color: dimgray;
+    border-radius: 0.5rem; 
+    border: 1rem;
+    border-color:dimgray;
+    margin: 0 0.5rem 1rem;
+}
+
+#header {
+    margin: 1rem auto;
     width: 540px;
     text-align: center;
+}
+
+#high-scores {
+    color: #e0e0e0;
 }
 
 #app {
