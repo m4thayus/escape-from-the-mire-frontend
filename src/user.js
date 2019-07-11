@@ -82,6 +82,7 @@ class User {
                 level = levelObj.map
                 user = new User(newUser.character_class, newUser.name, newUser.id)
                 currentScore().innerText = 'Current Score: 0'
+                showHealth().innerText = `Health: ${user.health}`
                 showScores().remove()
             })
             .catch(err => console.log(err))
@@ -220,7 +221,7 @@ class User {
                 this.score += 50
                 this.health -= 10;
             }
-
+            showHealth().innerText = `Health: ${this.health}`
             console.log("Health:", this.health)
             console.log("Score:", this.score)
         }
@@ -268,6 +269,7 @@ class User {
                     level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
                     let roll = User.roll();
                     if (roll !== 20) {
+                        showHealth().innerText = `Health: ${this.health}`
                         this.health -= 10
                     }
                     this.score -= 50

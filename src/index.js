@@ -25,6 +25,10 @@ function showScores(){
 	return document.getElementById('show-scores')
 }
 
+function showHealth(){
+	return document.getElementById('health')
+}
+
 function app() {
 	return document.getElementById("app")
 }
