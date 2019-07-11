@@ -5,26 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <title>Escape from the Mire</title>
 </head>
 <body>
-    <div id="header">
-        <h1>Escape from the Mire</h1>
-        <h2 id='message'>Choose a name</h2>
-        <h2 id='score'></h2>
-        <button id="show-scores">Show Scores</button>
-        <form id="create-user">
-            <input type="text" name="username" id="" placeholder="username" required>
-            <select name="class" id="">
-                <option value="paladin">Paladin</option>
-                <option value="archer">Archer</option>
-                <option value="sage">Sage</option>
-                <option value="thief">Thief</option>
-            </select>
-            <input type="submit" value="submit">
-        </form>
+    <div class="container">
+        <div id="header">
+            <h1>Escape from the Mire</h1>
+            <h2 id='message'>Choose a name</h2>
+            <h2 id='score'></h2>
+            <button id="show-scores">High Scores</button>
+            <form id="create-user">
+                <br>
+                <input type="text" name="username" id="" placeholder="username" required>
+                <br>
+                <img id='select-archer' src="img/character/archer.gif" alt="" srcset="">
+                <img id='select-paladin' src="img/character/paladin.gif" alt="" srcset="">
+                <img id='select-sage' src="img/character/sage.gif" alt="" srcset="">
+                <img id='select-thief' src="img/character/thief.gif" alt="" srcset="">
+                <p name='selectedClass' id='selected-class'></p>
+                <input id='selected-class-input' type="hidden" name="class" value="archer">
+                <input type="submit" value="submit">
+            </form>
+        </div>
+        <div id="app"></div>
     </div>
-    <div id="app"></div>
     <script src="./src/user.js"></script>
     <script src="./src/monster.js"></script>
     <script src="./src/cell.js"></script>
