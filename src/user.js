@@ -151,26 +151,56 @@ class User {
             bottomLeft: [this.x-1,this.y+1],
             left: [this.x-1,this.y],
             topLeft: [this.x-1,this.y-1],
-        }
-        
-       let extendedVision = {
-            // extended vision
+
+            // extended
             topLeftFar: [this.x-2,this.y-2],
             topLeftCenterFar: [this.x-1,this.y-2],
             topCenterFar: [this.x,this.y-2],
-            topRightCenterFar: [this.x+1,this.y-2],
+            topCenterFar: [this.x,this.y-2],
             topRightFar: [this.x+2,this.y-2],
+            topRightCenterFar: [this.x+1,this.y-2],
             rightTopFar: [this.x+2,this.y-1],
             rightFar: [this.x+2,this.y],
             rightBottomFar: [this.x+2,this.y+1],
             bottomRightFar: [this.x+2,this.y+2],
             bottomRightCenter: [this.x+1,this.y+2],
-            bottomCenterFar: [this.x,this.y+2],
-            bottomLeftCenter: [this.x-1,this.y+2],
-            bottomLeftFar: [this.x-2,this.y+2],
-            leftBottomCenter: [this.x-2,this.y+1],
-            leftFar: [this.x-2,this.y],
             leftCenterTop: [this.x-2,this.y-1],
+            leftBottomCenter: [this.x-2,this.y+1],
+            bottomLeftFar: [this.x-2,this.y+2],
+            bottomLeftCenter: [this.x-1,this.y+2],
+            leftFar: [this.x-2,this.y],
+            bottomCenterFar: [this.x,this.y+2],
+
+        }
+        
+       let extendedVision = {
+            // extended vision
+            topLeftSuperFar: [this.x-3, this.y-2],
+            topLeftCenterSuperFar: [this.x-1, this.y-3],
+            topCenterSuperFar: [this.x, this.y-3],
+            topRightCenterSuperFar: [this.x+1, this.y-3],
+            topRightSuperFar: [this.x+2, this.y-3],
+            rightTopSuperFar: [this.x+3, this.y-1],
+            rightSuperFar: [this.x+3, this.y],
+            rightBottomSuperFar: [this.x+3, this.y+1],
+            bottomRightSuperFar: [this.x+3, this.y+2],
+            bottomRightCenterSuper: [this.x+1, this.y+3],
+            bottomCenterSuperFar: [this.x, this.y+3],
+            bottomLeftCenterSuper: [this.x-1, this.y+3],
+            bottomLeftSuperFar: [this.x-3, this.y+3],
+            leftBottomCenterSuper: [this.x-3, this.y+1],
+            leftSuperFar: [this.x-3, this.y],
+            leftCenterTopSuper: [this.x-3, this.y-1],
+
+            bottomLeftCenterSuperFar: [this.x-2, this.y+3],
+            bottomRightCenterSuperFar: [this.x+2, this.y+3],
+            bottomRightSuperFarCorner: [this.x+3, this.y+3],
+
+            leftBottomCenterSuperFar: [this.x-3, this.y+2],
+            topLeftSuperFarCorner: [this.x-3, this.y-3],
+            topLeftCenterSuperFarCorner: [this.x-2, this.y-3],
+            topRightSuperFarCorner: [this.x+3, this.y-3],
+            rightTopCenterSuperFar: [this.x+3, this.y-2]
         }
 
         if (this.charClass === 'archer') {
