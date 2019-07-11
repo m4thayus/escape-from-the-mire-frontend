@@ -6,6 +6,7 @@ class User {
         this.id = id
 
         this.health = 50
+        this.status = null
         if (this.charClass === 'paladin') this.health += 25
 
         this.y = null
@@ -207,25 +208,61 @@ class User {
     }
 
     checkMonsterCollision() {
-        let mob = Monster.all.find(monster => monster.y === this.y + this.moveY && monster.x === this.x + this.moveX)
+        let mob = Monster.all.find(monster => monster.y === this.y && monster.x === this.x)
         if (!!mob) {
+            let direction = null
+            let move = null
+            while (!(mob.validMove(direction, move))) {
+                direction = Math.random() < 0.5 ? "y" : "x"
+                move = Math.random() < 0.5 ? -1 : 1;
+            }
+            mob[direction] += move
             let roll = User.roll();
             console.log("Roll:", roll)
             if (roll === 1) {
+                this.status = "splat"
                 this.health = 0;
+                console.log(`A ${mob.type} killed ${this.name}!`) 
             } else if (roll >= 10) {
-                Monster.all = Monster.all.filter(monster => monster !== mob)
+                mob.status = "splat"
                 this.score += 100
                 console.log(`${this.name} killed a ${mob.type}!`) 
             } else {
+                this.status = "splat"
                 this.score += 50
                 this.health -= 10;
+                console.log(`A ${mob.type} hit ${this.name}!`) 
             }
             showHealth().innerText = `Health: ${this.health}`
             console.log("Health:", this.health)
             console.log("Score:", this.score)
+            return !!mob
         }
     }
+
+    checkStaticCollision() {
+        let collision = false
+        if (level[this.y][this.x].texture === 'chest') {
+            this.score *= 2
+            level[this.y][this.x].texture = null
+            console.log("Score:", this.score)
+            collision = true
+        }
+        if (level[this.y][this.x].texture === 'blood') {
+            level[this.y][this.x].texture = 'tentacle'
+            let roll = User.roll();
+            if (roll !== 20) {
+                this.health -= 10
+                showHealth().innerText = `Health: ${this.health}`
+                this.status = "splat"
+            }
+            this.score -= 50
+            console.log("Score:", this.score)
+            collision = true
+        }
+        return collision
+    }
+
     validateMovement(){
         if (this.health <= 0) {
             alert('Heh, not even close :) You lose.')
@@ -233,6 +270,7 @@ class User {
             return 
         }
         if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
+
             this.kublaiY = this.y
             this.kublaiX = this.x
             this.x += this.moveX
@@ -246,37 +284,36 @@ class User {
             level = levelObj.map
 
             this.updateVision()	
+            Monster.all = []
             this.health = 50;
+            this.status = null;
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
-            
-
             try {
+                this.status = null
                 this.kublaiY = this.y
                 this.kublaiX = this.x
                 this.x += this.moveX
                 this.y += this.moveY
-                this.checkMonsterCollision()
-                Monster.takeTurn(); 
-                this.checkMonsterCollision()
-                
-                if (level[this.y + this.moveY][this.x + this.moveX].texture === 'chest') {
-                    this.score *= 2
-                    level[this.y + this.moveY][this.x + this.moveX].texture = null
-                    console.log("Score:", this.score)
-                }
-                if (level[this.y + this.moveY][this.x + this.moveX].texture === 'blood') {
-                    level[this.y + this.moveY][this.x + this.moveX].texture = 'tentacle'
-                    let roll = User.roll();
-                    if (roll !== 20) {
-                        showHealth().innerText = `Health: ${this.health}`
-                        this.health -= 10
-                    }
-                    this.score -= 50
-                    console.log("Score:", this.score)
-                }
-                
+
+                // Update tiles that user can see 
                 this.updateVision()	
+
+                //Check for static collisions and re-render map
+                if (this.checkStaticCollision()) {
+                    // re-render map
+                    levelObj.generateMap()
+                }
+
+                // Give the mobs a turn to move and re-render map
+                Monster.takeTurn(); 
+
+                // Check for mob collision 
+                if (this.checkMonsterCollision()) {
+                    // re-render map
+                    levelObj.generateMap()
+                }
+
                 levelObj.generateMap()
             }
             catch(err) {
