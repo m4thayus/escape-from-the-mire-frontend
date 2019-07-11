@@ -7,7 +7,7 @@ class User {
 
         this.health = 50
         this.status = null
-        if (this.charClass === 'paladin') this.health += 25
+        if (this.charClass === 'paladin') this.health += 30
 
         this.y = null
         this.x = null
@@ -265,9 +265,10 @@ class User {
                 this.health -= 10;
                 console.log(`A ${mob.type} hit ${this.name}!`) 
             }
-            showHealth().innerText = `Health: ${this.health}`
             console.log("Health:", this.health)
             console.log("Score:", this.score)
+            showHealth().innerText = `Health: ${this.health}`
+            currentScore().innerText = `Current Score: ${this.score}`
             return !!mob
         }
     }
@@ -278,6 +279,7 @@ class User {
             this.score *= 2
             level[this.y][this.x].texture = null
             console.log("Score:", this.score)
+            currentScore().innerText = `Current Score: ${this.score}`
             collision = true
         }
         if (level[this.y][this.x].texture === 'blood') {
@@ -290,6 +292,7 @@ class User {
             }
             this.score -= 50
             console.log("Score:", this.score)
+            currentScore().innerText = `Current Score: ${this.score}`
             collision = true
         }
         return collision
@@ -317,7 +320,7 @@ class User {
 
             this.updateVision()	
             Monster.all = []
-            this.health = 50;
+            this.health += 50;
             this.status = null;
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
