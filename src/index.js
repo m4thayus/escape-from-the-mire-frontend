@@ -83,8 +83,16 @@ createUserForm().addEventListener('submit', User.createUser)
 showScores().addEventListener('click', handleShowScores)
 
 function handleShowScores(){
-	app().innerHTML = ""
-	User.getUsers()
+	if (this.innerText === 'High Scores') {
+		app().innerHTML = ""
+		createUserForm().style.display = 'none'
+		this.innerText = 'Back'
+		User.getUsers()
+	} else {
+		app().innerHTML = ""
+		createUserForm().style.display = ''
+		this.innerText = 'High Scores'
+	}
 }
 
 let messageArray = [

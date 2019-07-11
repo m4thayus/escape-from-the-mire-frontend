@@ -58,7 +58,6 @@ class User {
             }
             table.append(tbody,thead)
             app().appendChild(table)
-            console.log(users)
         })
         .catch(err => console.log(err))
     }
@@ -124,7 +123,7 @@ class User {
         td2.innerText = user.score
 
         let td3 = document.createElement('td')
-        td3.innerText = user.character_class
+        td3.innerText = user.character_class[0].toUpperCase() + user.character_class.slice(1)
 
         tr.append(th1, td1, td2, td3)
         tbody.append(tr)

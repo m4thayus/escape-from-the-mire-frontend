@@ -14,10 +14,11 @@
             <h1>Escape from the Mire</h1>
             <h2 id='message'>Choose a name</h2>
             <h2 id='score'></h2>
-            <button id="show-scores">High Scores</button>
-            <form id="create-user">
+            <button class="btn btn-info" id="show-scores">High Scores</button>
+            <br>
+            <form class="form-group" id="create-user">
                 <br>
-                <input type="text" name="username" id="" placeholder="username" required>
+                <input class="form-control" type="text" name="username" id="" placeholder="username" required>
                 <br>
                 <img id='select-archer' src="img/character/archer.gif" alt="" srcset="">
                 <img id='select-paladin' src="img/character/paladin.gif" alt="" srcset="">
@@ -25,7 +26,7 @@
                 <img id='select-thief' src="img/character/thief.gif" alt="" srcset="">
                 <p name='selectedClass' id='selected-class'></p>
                 <input id='selected-class-input' type="hidden" name="class" value="archer">
-                <input type="submit" value="submit">
+                <input class="btn btn-primary" class="form-control" type="submit" value="submit">
             </form>
         </div>
         <div id="app"></div>
