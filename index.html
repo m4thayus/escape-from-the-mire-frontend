@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css">
     <title>Escape from the Mire</title>
 </head>
-<body>
-    <div class="container test">
+<body style="background-color: #1d1f21">
+    <div class="container">
         <div id="header">
             <h1>Escape from the Mire</h1>
             <h2 id='message'>Choose a name</h2>
@@ -18,7 +18,7 @@
             <button class="btn btn-info" id="show-scores">High Scores</button>
             <form class="form-group" id="create-user">
                 <br>
-                <input class="form-control" type="text" name="username" id="" placeholder="username" required>
+                <input class="form-control" id="username" type="text" name="username" id="" placeholder="username" required>
                 <br>
                 <img id='select-archer' src="img/character/archer.gif" alt="" srcset="">
                 <img id='select-paladin' src="img/character/paladin.gif" alt="" srcset="">
@@ -26,7 +26,7 @@
                 <img id='select-thief' src="img/character/thief.gif" alt="" srcset="">
                 <p name='selectedClass' id='selected-class'></p>
                 <input id='selected-class-input' type="hidden" name="class" value="archer">
-                <input class="btn btn-primary" class="form-control" type="submit" value="submit">
+                <input class="btn btn-primary" class="form-control" type="submit" value="Submit">
             </form>
         </div>
         <div id="app"></div>

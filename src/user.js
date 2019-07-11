@@ -28,7 +28,8 @@ class User {
         .then(users => {
             users.sort((a,b) => b.score - a.score)
             let table = document.createElement('table')
-            table.classList.add('table', 'table-striped')
+            table.classList.add('table', 'table-dark')
+            table.id = "high-scores"
             
             let thead = document.createElement('thead')
 
@@ -89,7 +90,8 @@ class User {
             .catch(err => console.log(err))
             
         addMovementListener()
-        message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
+        message().style = "display: none;"
+        //message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
         title().style = "display: none;" 
         event.target.remove()
     }
@@ -295,7 +297,7 @@ class User {
 
     validateMovement(){
         if (this.health <= 0) {
-            alert('Heh, not even close :) You lose.')
+            alert(`You died. ${messageArray[Math.floor(Math.random() * messageArray.length)]}`)
             window.location.reload()
             return 
         }

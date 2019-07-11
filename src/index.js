@@ -114,7 +114,7 @@ let messageArray = [
 	"You are behind your peers",
 	"You disappoint your parents",
 	"You embarrass your friends",
-	"You am not good at anything",
+	"You are not good at anything",
 	"You cannot sleep at night",
 	"You will never accomplish anything of value in this life",
 ]
