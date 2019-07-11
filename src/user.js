@@ -26,6 +26,7 @@ class User {
         fetch('http://127.0.0.1:3000/users')
         .then(resp => resp.json())
         .then(users => {
+            console.log(users)
             users.sort((a,b) => b.score - a.score)
             let table = document.createElement('table')
             table.classList.add('table', 'table-dark')
@@ -55,8 +56,10 @@ class User {
             thead.append(tr)
 
             let tbody = document.createElement('tbody')
-            for (let i = 0; i < 20; i++) {
-                User.addUserToDom(users[i], tbody, i)
+            for (let i = 0; i < users.length; i++) {
+                if (i < 20) {
+                    User.addUserToDom(users[i], tbody, i)
+                }
             }
             table.append(tbody,thead)
             app().appendChild(table)
