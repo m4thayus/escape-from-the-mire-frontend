@@ -194,6 +194,7 @@ class User {
             level = levelObj.map
 
             this.updateVision()	
+            Monster.all = []
             this.health = 50;
             levelObj.generateMap()
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
