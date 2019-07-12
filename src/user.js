@@ -280,6 +280,7 @@ class User {
                 updateConsole(`${this.name} killed a ${mob.type}!`)
                 if (this.charClass === 'necromancer') {
                     this.health += 5
+                    console.log(`...and absorbs the ${mob.type}'s energy!`)
                     updateConsole(`...and absorbs the ${mob.type}'s energy!`)
                     showHealth().innerText = `Health: ${this.health}`
                 } 
