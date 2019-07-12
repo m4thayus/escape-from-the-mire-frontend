@@ -276,7 +276,12 @@ class User {
                 mob.status = "splat"
                 this.score += 100
                 console.log(`${this.name} killed a ${mob.type}!`)
-                updateConsole(`${this.name} killed a ${mob.type}!`) 
+                updateConsole(`${this.name} killed a ${mob.type}!`)
+                if (this.charClass === 'necromancer') {
+                    this.health += 5
+                    updateConsole(`and heals 5 health!`)
+                    showHealth().innerText = `Health: ${this.health}`
+                } 
             } else {
                 console.log(`A ${mob.type} hit ${this.name}!`)
                 updateConsole(`A ${mob.type} hit ${this.name}!`) 
