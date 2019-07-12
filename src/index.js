@@ -33,6 +33,10 @@ function app() {
 	return document.getElementById("app")
 }
 
+function selectNecromancer(){
+	return document.getElementById('select-necromancer')
+}
+
 function selectRanger(){
 	return document.getElementById('select-ranger')
 }
@@ -88,6 +92,9 @@ function handleClassSelection(){
 			selectedClass().innerHTML = "Current Selection: Paladin <br> Paladins are knights of renown. Paladins have <strong>increased health</strong> because God loves them."
 			selectedClassInput().value = 'paladin'
 			break;
+		case 'select-necromancer':
+			selectedClass().innerHTML = "Current Selection: Necromancer <br> Necromancers control the forces of life and death. Necromancers <strong> gain health after killing monsters </strong> through dark magic."
+			selectedClassInput().value = 'necromancer'
 	}	
 }
 function updateConsole(message) {
@@ -103,6 +110,7 @@ selectSage().addEventListener('click', handleClassSelection)
 selectRogue().addEventListener('click', handleClassSelection)
 selectRanger().addEventListener('click', handleClassSelection)
 selectPaladin().addEventListener('click', handleClassSelection)
+selectNecromancer().addEventListener('click', handleClassSelection)
 
 usernameInput().select()
 createUserForm().addEventListener('submit', User.createUser)
