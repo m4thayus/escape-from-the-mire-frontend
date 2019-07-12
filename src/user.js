@@ -140,10 +140,17 @@ class User {
     }
 
     // user rolls of d20
-    static roll() {
+    static roll(mob) {
         let min = Math.ceil(0);
         let max = Math.floor(20);
-        return Math.ceil(Math.random() * (max - min)) + min;
+        let roll = Math.ceil(Math.random() * (max - min)) + min;
+        if (!!mob) {
+            roll = mob.type === "skeleton" ? roll + 2 : roll;
+            roll = mob.type === "lich" ? roll - 5 : roll;
+        } 
+        roll = roll < 1 ? 1 : roll;
+        roll = roll > 20 ? 20 : roll;
+        return roll;
     }
 
     // user movement and vision methods
@@ -255,7 +262,7 @@ class User {
                 move = Math.random() < 0.5 ? -1 : 1;
             }
             mob[direction] += move
-            let roll = User.roll();
+            let roll = User.roll(mob);
             console.log("Roll:", roll)
             
             if (roll === 1) {
