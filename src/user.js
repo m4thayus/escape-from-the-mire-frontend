@@ -101,6 +101,8 @@ class User {
 
     // updates user score
     updateUser(){
+        if (this.score < 1) return
+        
         fetch(`http://127.0.0.1:3000/users/${this.id}`, {
             method: 'PATCH', 
             headers: {
