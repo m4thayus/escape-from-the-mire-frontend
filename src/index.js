@@ -57,6 +57,9 @@ function selectedClassInput(){
 	return document.getElementById('selected-class-input')
 }
 
+function usernameInput(){
+	return document.getElementById('username')
+}
 function consoleContainer(){
 	return document.getElementById('console-container')
 }
@@ -100,6 +103,8 @@ selectSage().addEventListener('click', handleClassSelection)
 selectRogue().addEventListener('click', handleClassSelection)
 selectRanger().addEventListener('click', handleClassSelection)
 selectPaladin().addEventListener('click', handleClassSelection)
+
+usernameInput().select()
 createUserForm().addEventListener('submit', User.createUser)
 showScores().addEventListener('click', handleShowScores)
 
