@@ -304,6 +304,7 @@ class User {
     validateMovement(){
         if (this.health <= 0) {
             alert(`You died. ${messageArray[Math.floor(Math.random() * messageArray.length)]}`)
+            this.updateUser()
             window.location.reload()
             return 
         }
