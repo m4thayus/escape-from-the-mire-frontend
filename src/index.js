@@ -85,9 +85,9 @@ function handleClassSelection(){
 function updateConsole(message) {
 	let p = document.createElement('p')
 	p.innerText = message
-	consoleContainer().insertBefore(p, consoleContainer().childNodes[0])
+	consoleContainer().appendChild(p)
 	if (consoleContainer().childNodes.length > 5 ){
-		consoleContainer().childNodes[5].remove()
+		consoleContainer().childNodes[0].remove()
 	}
 }
 
