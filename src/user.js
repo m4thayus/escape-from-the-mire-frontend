@@ -94,6 +94,7 @@ class User {
             
         addMovementListener()
         message().style = "display: none;"
+        logContainer().style = "display: flex;"
         //message().innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
         title().style = "display: none;" 
         event.target.remove()
