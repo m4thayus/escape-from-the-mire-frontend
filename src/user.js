@@ -340,13 +340,15 @@ class User {
             updateConsole(`a tentacle appears and attacks ${this.name}...`)
             let roll = User.roll();
             if (roll !== 20) {
+                console.log(`the tentacle hits ${this.name}!`)
+                updateConsole(`the tentacle hits ${this.name}!`)
                 this.health -= 10
                 console.log("Health:", this.health)
                 showHealth().innerText = `Health: ${this.health}`
                 this.status = "splat"
             } else {
-                console.log(`${this.name} dodges it!`)
-                updateConsole(`${this.name} dodges it!`)
+                console.log(`the tentacle misses ${this.name}!`)
+                updateConsole(`the tentacle misses ${this.name}!`)
             }
             this.score -= 50
             console.log("Score:", this.score)
