@@ -13,8 +13,7 @@
         <div id="header">
             <h1>Escape from the Mire</h1>
             <h2 id='message'>Choose a name</h2>
-            <h2 id='score'></h2>
-            <h2 id='health'></h2>
+
             <button class="btn btn-info" id="show-scores">High Scores</button>
             <form class="form-group" id="create-user">
                 <br>
@@ -30,7 +29,13 @@
             </form>
         </div>
         <div id="app"></div>
-        <div id='console-container'></div>
+        <div class='row'>
+            <div class="col-sm-4">
+                <h2 id='score'></h2>
+                <h2 id='health'></h2>
+            </div>
+            <div class="col-sm-4" id='console-container'></div>
+        </div>
     </div>
     <script src="./src/user.js"></script>
     <script src="./src/monster.js"></script>

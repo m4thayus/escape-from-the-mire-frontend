@@ -85,7 +85,10 @@ function handleClassSelection(){
 function updateConsole(message) {
 	let p = document.createElement('p')
 	p.innerText = message
-	consoleContainer().appendChild(p)
+	consoleContainer().insertBefore(p, consoleContainer().childNodes[0])
+	if (consoleContainer().childNodes.length > 5 ){
+		consoleContainer().childNodes[5].remove()
+	}
 }
 
 selectSage().addEventListener('click', handleClassSelection)
