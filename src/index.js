@@ -60,6 +60,11 @@ function selectedClassInput(){
 function consoleContainer(){
 	return document.getElementById('console-container')
 }
+
+function logContainer(){
+	return document.getElementById('log-container')
+}
+
 selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
 
 function handleClassSelection(){
