@@ -210,7 +210,7 @@ class User {
             rightTopCenterSuperFar: [this.x+3, this.y-2]
         }
 
-        if (this.charClass === 'archer') {
+        if (this.charClass === 'ranger') {
             this.vision = {...normalVision, ...extendedVision}
         } else {
             this.vision = {...normalVision}
@@ -282,7 +282,7 @@ class User {
                 updateConsole(`A ${mob.type} hit ${this.name}!`) 
                 this.score += 50
                 if (
-                    this.charClass === "thief" && 
+                    this.charClass === "rogue" && 
                     Math.random() < 0.33
                     ) {
                     console.log(`But ${this.name} dodges the attack!`)

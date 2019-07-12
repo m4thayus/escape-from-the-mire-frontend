@@ -11,7 +11,7 @@
     color: #e0e0e0;
 }
 
-#select-archer, #select-paladin, #select-sage, #select-thief {
+#select-ranger, #select-paladin, #select-sage, #select-rogue {
     background-color: dimgray;
     border-radius: 0.5rem; 
     border: 1rem;
@@ -89,8 +89,8 @@
 
 /* Character Entities */
 
-.player-archer {
-    content: url(img/character/archer.gif);
+.player-ranger {
+    content: url(img/character/ranger.gif);
 }
 
 .player-paladin {
@@ -101,8 +101,8 @@
     content: url(img/character/sage.gif);
 }
 
-.player-thief {
-    content: url(img/character/thief.gif);
+.player-rogue {
+    content: url(img/character/rogue.gif);
 }
 
 .kublai {

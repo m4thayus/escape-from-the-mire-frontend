@@ -33,8 +33,8 @@ function app() {
 	return document.getElementById("app")
 }
 
-function selectArcher(){
-	return document.getElementById('select-archer')
+function selectRanger(){
+	return document.getElementById('select-ranger')
 }
 
 function selectPaladin(){
@@ -45,8 +45,8 @@ function selectSage(){
 	return document.getElementById('select-sage')
 }
 
-function selectThief(){
-	return document.getElementById('select-thief')
+function selectRogue(){
+	return document.getElementById('select-rogue')
 }
 
 function selectedClass(){
@@ -64,13 +64,13 @@ selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters 
 
 function handleClassSelection(){
 	switch (this.id) {
-		case 'select-archer':
+		case 'select-ranger':
 			selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
-			selectedClassInput().value = 'archer'
+			selectedClassInput().value = 'ranger'
 			break;
-		case 'select-thief':
+		case 'select-rogue':
 			selectedClass().innerHTML = "Current Selection: Rogue <br> Rogues are masters of chance. Rogues have <strong>a chance to dodge</strong> monsters."
-			selectedClassInput().value = 'thief'
+			selectedClassInput().value = 'rogue'
 			break;
 		case 'select-sage':
 			selectedClass().innerHTML = "Current Selection: Sage <br> Sages are masters of the elements. Sages <strong>heal</strong> when they find treasure."
@@ -92,8 +92,8 @@ function updateConsole(message) {
 }
 
 selectSage().addEventListener('click', handleClassSelection)
-selectThief().addEventListener('click', handleClassSelection)
-selectArcher().addEventListener('click', handleClassSelection)
+selectRogue().addEventListener('click', handleClassSelection)
+selectRanger().addEventListener('click', handleClassSelection)
 selectPaladin().addEventListener('click', handleClassSelection)
 createUserForm().addEventListener('submit', User.createUser)
 showScores().addEventListener('click', handleShowScores)
