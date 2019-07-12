@@ -11,10 +11,10 @@
 <body style="background-color: #1d1f21">
     <div class="container">
         <div id="header">
-            <h1>Escape from the Mire</h1>
-            <h2 id='message'>Choose a name</h2>
+            <div id="title">
+                <h1>Escape from the Mire</h1>
+            </div>
 
-            <button class="btn btn-info" id="show-scores">High Scores</button>
             <form class="form-group" id="create-user">
                 <br>
                 <input class="form-control" id="username" type="text" name="username" id="" placeholder="Character Name" required>
@@ -28,6 +28,8 @@
                 <input id='selected-class-input' type="hidden" name="class" value="ranger">
                 <input class="btn btn-primary" class="form-control" type="submit" value="Start Game">
             </form>
+            <button class="btn btn-info" id="show-scores">High Scores</button>
+
         </div>
         <div id="app"></div>
         <div id="log-container" style="display: none;">

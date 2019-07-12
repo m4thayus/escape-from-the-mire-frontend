@@ -3,9 +3,6 @@ function title() {
     return document.querySelector("h1");
 }
 
-function message() {
-	return message = document.getElementById('message')
-}
 
 function createUserForm() {
 	return document.getElementById('create-user')
@@ -117,6 +114,7 @@ createUserForm().addEventListener('submit', User.createUser)
 showScores().addEventListener('click', handleShowScores)
 
 function handleShowScores(){
+	
 	if (this.innerText === 'High Scores') {
 		app().innerHTML = ""
 		createUserForm().style.display = 'none'
