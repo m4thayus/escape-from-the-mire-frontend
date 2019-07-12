@@ -60,24 +60,24 @@ function selectedClassInput(){
 function consoleContainer(){
 	return document.getElementById('console-container')
 }
-selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong> increased vision </strong> compared to their allies."
+selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
 
 function handleClassSelection(){
 	switch (this.id) {
 		case 'select-archer':
-			selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong> increased vision </strong> compared to their allies."
+			selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
 			selectedClassInput().value = 'archer'
 			break;
 		case 'select-thief':
-			selectedClass().innerHTML = "Current Selection: Thief <br> Thieves are masters of chance. Thieves have <strong> increased luck </strong> aganst monsters."
+			selectedClass().innerHTML = "Current Selection: Rogue <br> Rogues are masters of chance. Rogues have <strong>a chance to dodge</strong> monsters."
 			selectedClassInput().value = 'thief'
 			break;
 		case 'select-sage':
-			selectedClass().innerHTML = "Current Selection: Sage <br> Sages are masters of the elements. Sages have <strong> increased attack range. </strong>"
+			selectedClass().innerHTML = "Current Selection: Sage <br> Sages are masters of the elements. Sages <strong>heal</strong> when they find treasure."
 			selectedClassInput().value = 'sage'
 			break;
 		case 'select-paladin':
-			selectedClass().innerHTML = "Current Selection: Paladin <br> Paladins are knights of renown. Paladins have <strong> increased health </strong> because God loves them."
+			selectedClass().innerHTML = "Current Selection: Paladin <br> Paladins are knights of renown. Paladins have <strong>increased health</strong> because God loves them."
 			selectedClassInput().value = 'paladin'
 			break;
 	}	

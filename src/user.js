@@ -258,37 +258,32 @@ class User {
             console.log("Roll:", roll)
             updateConsole(`roll: ${roll}`)
             
-            if (this.charClass === 'thief') {
-                if (roll === 1) {
-                    this.status = "splat"
-                    this.health = 0;
-                    console.log(`A ${mob.type} killed ${this.name}!`) 
-                } else if (roll >= 10) {
-                    mob.status = "splat"
-                    this.score += 100
-                    console.log(`${this.name} killed a ${mob.type}!`) 
-                } else if (roll >= 8) {
-                    console.log(`${this.name} dodges ${mob.type}!`)
-                } else {
-                    this.status = "splat"
-                    this.score += 50
-                    this.health -= 10;
-                    console.log(`A ${mob.type} hit ${this.name}!`) 
-                }
+            if (roll === 1) {
+                this.status = "splat"
+                this.health = 0;
+                console.log(`A ${mob.type} killed ${this.name}!`) 
+            } else if (roll === 20) {
+                mob.status = "splat"
+                this.score += 100
+                console.log(`${this.name} killed a ${mob.type}!`) 
+                console.log(`Kublai licks ${this.name}'s wounds...`) 
+                console.log(`${this.name} feels a little better!`) 
+                this.health += 10
+            } else if (roll >= 10) {
+                mob.status = "splat"
+                this.score += 100
+                console.log(`${this.name} killed a ${mob.type}!`) 
             } else {
-                if (roll === 1) {
-                    this.status = "splat"
-                    this.health = 0;
-                    console.log(`A ${mob.type} killed ${this.name}!`) 
-                } else if (roll >= 10) {
-                    mob.status = "splat"
-                    this.score += 100
-                    console.log(`${this.name} killed a ${mob.type}!`) 
+                console.log(`A ${mob.type} hit ${this.name}!`) 
+                this.score += 50
+                if (
+                    this.charClass === "thief" && 
+                    Math.random() < 0.33
+                    ) {
+                    console.log(`But ${this.name} dodges the attack!`)
                 } else {
                     this.status = "splat"
-                    this.score += 50
                     this.health -= 10;
-                    console.log(`A ${mob.type} hit ${this.name}!`) 
                 }
             }
             console.log("Health:", this.health)
@@ -302,19 +297,31 @@ class User {
     checkStaticCollision() {
         let collision = false
         if (level[this.y][this.x].texture === 'chest') {
-            this.score *= 2
+            console.log(`${this.name} found a treasure chest...`) 
+            if (this.charClass === 'sage') {
+                this.health += 30
+                console.log(`It heals ${this.name}!`)
+                console.log("Health:", this.health)
+                showHealth().innerText = `Health: ${this.health}`
+            }
+            this.score += 300
             level[this.y][this.x].texture = null
             console.log("Score:", this.score)
             currentScore().innerText = `Current Score: ${this.score}`
             collision = true
         }
         if (level[this.y][this.x].texture === 'blood') {
+            console.log(`${this.name} steps through a pool of blood...`) 
             level[this.y][this.x].texture = 'tentacle'
+            console.log(`a tentacle appears and attacks ${this.name}...`)
             let roll = User.roll();
             if (roll !== 20) {
                 this.health -= 10
+                console.log("Health:", this.health)
                 showHealth().innerText = `Health: ${this.health}`
                 this.status = "splat"
+            } else {
+                console.log(`${this.name} dodges it!`)
             }
             this.score -= 50
             console.log("Score:", this.score)
