@@ -254,19 +254,40 @@ class User {
             mob[direction] += move
             let roll = User.roll();
             console.log("Roll:", roll)
-            if (roll === 1) {
-                this.status = "splat"
-                this.health = 0;
-                console.log(`A ${mob.type} killed ${this.name}!`) 
-            } else if (roll >= 10) {
-                mob.status = "splat"
-                this.score += 100
-                console.log(`${this.name} killed a ${mob.type}!`) 
+            updateConsole(`roll: ${roll}`)
+            
+            if (this.charClass === 'thief') {
+                if (roll === 1) {
+                    this.status = "splat"
+                    this.health = 0;
+                    console.log(`A ${mob.type} killed ${this.name}!`) 
+                } else if (roll >= 10) {
+                    mob.status = "splat"
+                    this.score += 100
+                    console.log(`${this.name} killed a ${mob.type}!`) 
+                } else if (roll >= 8) {
+                    console.log(`${this.name} dodges ${mob.type}!`)
+                } else {
+                    this.status = "splat"
+                    this.score += 50
+                    this.health -= 10;
+                    console.log(`A ${mob.type} hit ${this.name}!`) 
+                }
             } else {
-                this.status = "splat"
-                this.score += 50
-                this.health -= 10;
-                console.log(`A ${mob.type} hit ${this.name}!`) 
+                if (roll === 1) {
+                    this.status = "splat"
+                    this.health = 0;
+                    console.log(`A ${mob.type} killed ${this.name}!`) 
+                } else if (roll >= 10) {
+                    mob.status = "splat"
+                    this.score += 100
+                    console.log(`${this.name} killed a ${mob.type}!`) 
+                } else {
+                    this.status = "splat"
+                    this.score += 50
+                    this.health -= 10;
+                    console.log(`A ${mob.type} hit ${this.name}!`) 
+                }
             }
             console.log("Health:", this.health)
             console.log("Score:", this.score)

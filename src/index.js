@@ -56,6 +56,10 @@ function selectedClass(){
 function selectedClassInput(){
 	return document.getElementById('selected-class-input')
 }
+
+function consoleContainer(){
+	return document.getElementById('console-container')
+}
 selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong> increased vision </strong> compared to their allies."
 
 function handleClassSelection(){
@@ -77,6 +81,11 @@ function handleClassSelection(){
 			selectedClassInput().value = 'paladin'
 			break;
 	}	
+}
+function updateConsole(message) {
+	let p = document.createElement('p')
+	p.innerText = message
+	consoleContainer().appendChild(p)
 }
 
 selectSage().addEventListener('click', handleClassSelection)
