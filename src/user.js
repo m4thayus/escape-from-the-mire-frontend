@@ -308,25 +308,42 @@ class User {
             window.location.reload()
             return 
         }
-        if ((this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) || (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x))  {
+        if (
+            (this.y + this.moveY === exit.y && this.x + this.moveX === exit.x) ||
+            (this.y + this.moveY === entrance.y && this.x + this.moveX === entrance.x)
+            )  {
 
             this.kublaiY = this.y
             this.kublaiX = this.x
             this.x += this.moveX
             this.y += this.moveY
+
+            // Show the player move into exit
+            levelObj.generateMap()
+
+            // Update score and send to backend
             this.score += 500
             this.updateUser()
-            levelObj.generateMap()
+
+            // Clear monsters 
+            Monster.all = Monster.all.filter(monster => Math.random() < 0.25)
     
-            // Unused until front-end controls map size
+            // Make new level
             levelObj = new Level(30, 30)
             level = levelObj.map
 
+            // Show tiles where player spawns
             this.updateVision()	
-            Monster.all = []
+        
+            // Reset status and heal player
             this.health += 50;
             this.status = null;
+            showHealth().innerText = `Health: ${this.health}`
+            currentScore().innerText = `Current Score: ${this.score}`
+
+            // Show new map
             levelObj.generateMap()
+
         } else if (level[this.y + this.moveY][this.x + this.moveX].type != 'wall') {
             try {
                 this.status = null
