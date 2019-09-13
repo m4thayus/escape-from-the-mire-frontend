@@ -23,7 +23,7 @@ class User {
     // User API calls
 
     static getUsers(){
-        fetch('http://mire-backend.conceptualsoup.blog/users')
+        fetch('https://mire-backend.conceptualsoup.blog/users')
         .then(resp => resp.json())
         .then(users => {
             console.log(users)
@@ -74,7 +74,7 @@ class User {
         if (name.length === 0 || !name.trim()) name = "Dweeb"
         
         event.preventDefault()
-        fetch('http://mire-backend.conceptualsoup.blog/users', {
+        fetch('https://mire-backend.conceptualsoup.blog/users', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ class User {
     updateUser(){
         if (this.score < 1) return
         
-        fetch(`http://mire-backend.conceptualsoup.blog/users/${this.id}`, {
+        fetch(`https://mire-backend.conceptualsoup.blog/users/${this.id}`, {
             method: 'PATCH', 
             headers: {
                 'Content-Type': 'application/json',

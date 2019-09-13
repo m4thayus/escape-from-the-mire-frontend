@@ -9,7 +9,7 @@ class Level {
     }
 
     static getLevel() {
-        return fetch('http://localhost:3000/mazes')
+        return fetch('https://mire-backend.conceptualsoup.blog/mazes')
             .then(response => response.json())
             .then(maze => {
                 return maze.raw_maze
