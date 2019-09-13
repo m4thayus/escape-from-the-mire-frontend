@@ -23,7 +23,7 @@ class User {
     // User API calls
 
     static getUsers(){
-        fetch('http://127.0.0.1:3000/users')
+        fetch('http://mire-backend.conceptualsoup.blog/users')
         .then(resp => resp.json())
         .then(users => {
             console.log(users)
@@ -74,7 +74,7 @@ class User {
         if (name.length === 0 || !name.trim()) name = "Dweeb"
         
         event.preventDefault()
-        fetch('http://127.0.0.1:3000/users', {
+        fetch('http://mire-backend.conceptualsoup.blog/users', {
                 method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
@@ -103,7 +103,7 @@ class User {
     updateUser(){
         if (this.score < 1) return
         
-        fetch(`http://127.0.0.1:3000/users/${this.id}`, {
+        fetch(`http://mire-backend.conceptualsoup.blog/users/${this.id}`, {
             method: 'PATCH', 
             headers: {
                 'Content-Type': 'application/json',
