@@ -101,8 +101,6 @@ class User {
 
     // updates user score
     updateUser(){
-        if (this.score < 1) return
-        
         fetch(`https://mire-backend.conceptualsoup.blog/users/${this.id}`, {
             method: 'PATCH', 
             headers: {
@@ -309,6 +307,7 @@ class User {
             console.log("Score:", this.score)
             showHealth().innerText = `Health: ${this.health}`
             currentScore().innerText = `Current Score: ${this.score}`
+            this.updateUser()
             return !!mob
         }
     }
@@ -329,6 +328,7 @@ class User {
             level[this.y][this.x].texture = null
             console.log("Score:", this.score)
             currentScore().innerText = `Current Score: ${this.score}`
+            this.updateUser()
             collision = true
         }
         if (level[this.y][this.x].texture === 'blood') {
@@ -352,6 +352,7 @@ class User {
             this.score -= 50
             console.log("Score:", this.score)
             currentScore().innerText = `Current Score: ${this.score}`
+            this.updateUser()
             collision = true
         }
         return collision
