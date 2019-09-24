@@ -57,7 +57,7 @@ class User {
 
             let tbody = document.createElement('tbody')
             for (let i = 0; i < users.length; i++) {
-                if (i < 20) {
+                if (i < 10) {
                     User.addUserToDom(users[i], tbody, i)
                 }
             }
