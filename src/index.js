@@ -50,6 +50,10 @@ function selectRogue(){
 	return document.getElementById('select-rogue')
 }
 
+function selectNecromancer(){
+	return document.getElementById('select-necromancer')
+}
+
 function selectedClass(){
 	return document.getElementById('selected-class')
 }
@@ -69,28 +73,53 @@ function logContainer(){
 	return document.getElementById('log-container')
 }
 
-selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
+selectedClass().innerHTML = "<strong>Ranger</strong><br>Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
 
 function handleClassSelection(){
 	switch (this.id) {
 		case 'select-ranger':
-			selectedClass().innerHTML = "Current Selection: Ranger <br> Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
+            selectRanger().setAttribute("selected", "true")
+            selectRogue().setAttribute("selected", "false")
+            selectSage().setAttribute("selected", "false")
+            selectPaladin().setAttribute("selected", "false")
+            selectNecromancer().setAttribute("selected", "false")
+			selectedClass().innerHTML = "<strong>Ranger</strong><br>Rangers are masters of nature. Rangers have <strong>increased vision</strong> compared to their allies."
 			selectedClassInput().value = 'ranger'
 			break;
 		case 'select-rogue':
-			selectedClass().innerHTML = "Current Selection: Rogue <br> Rogues are masters of chance. Rogues have <strong>a chance to dodge</strong> monsters."
+            selectRanger().setAttribute("selected", "false")
+            selectRogue().setAttribute("selected", "true")
+            selectSage().setAttribute("selected", "false")
+            selectPaladin().setAttribute("selected", "false")
+            selectNecromancer().setAttribute("selected", "false")
+			selectedClass().innerHTML = "<strong>Rogue</strong><br>Rogues are masters of chance. Rogues have <strong>a chance to dodge</strong> monsters."
 			selectedClassInput().value = 'rogue'
 			break;
 		case 'select-sage':
-			selectedClass().innerHTML = "Current Selection: Sage <br> Sages are masters of the elements. Sages <strong>heal</strong> when they find treasure."
+            selectRanger().setAttribute("selected", "false")
+            selectRogue().setAttribute("selected", "false")
+            selectSage().setAttribute("selected", "true")
+            selectPaladin().setAttribute("selected", "false")
+            selectNecromancer().setAttribute("selected", "false")
+			selectedClass().innerHTML = "<strong>Sage</strong><br>Sages are masters of the elements. Sages <strong>heal</strong> when they find treasure."
 			selectedClassInput().value = 'sage'
 			break;
 		case 'select-paladin':
-			selectedClass().innerHTML = "Current Selection: Paladin <br> Paladins are knights of renown. Paladins have <strong>increased health</strong> because God loves them."
+            selectRanger().setAttribute("selected", "false")
+            selectRogue().setAttribute("selected", "false")
+            selectSage().setAttribute("selected", "false")
+            selectPaladin().setAttribute("selected", "true")
+            selectNecromancer().setAttribute("selected", "false")
+			selectedClass().innerHTML = "<strong>Paladin</strong><br> Paladins are knights of renown. Paladins have <strong>increased health</strong> because God loves them."
 			selectedClassInput().value = 'paladin'
 			break;
 		case 'select-necromancer':
-			selectedClass().innerHTML = "Current Selection: Necromancer <br> Necromancers control the forces of life and death. Necromancers <strong> gain health after killing monsters </strong> through dark magic."
+            selectRanger().setAttribute("selected", "false")
+            selectRogue().setAttribute("selected", "false")
+            selectSage().setAttribute("selected", "false")
+            selectPaladin().setAttribute("selected", "false")
+            selectNecromancer().setAttribute("selected", "true")
+			selectedClass().innerHTML = "<strong>Necromancer</strong><br>Necromancers control the forces of life and death. Necromancers <strong> gain health after killing monsters </strong> through dark magic."
 			selectedClassInput().value = 'necromancer'
 	}	
 }
@@ -118,7 +147,7 @@ function handleShowScores(){
 	if (this.innerText === 'High Scores') {
 		app().innerHTML = ""
 		createUserForm().style.display = 'none'
-		this.innerText = 'Back'
+		this.innerText = 'Back to Start Menu'
 		User.getUsers()
 	} else {
 		app().innerHTML = ""

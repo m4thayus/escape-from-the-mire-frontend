@@ -11,12 +11,33 @@
     color: #e0e0e0;
 }
 
-#select-ranger, #select-paladin, #select-sage, #select-rogue, #select-necromancer {
+.select-class-button {
+    /* background-color: dimgray; */
+    background-image: url(img/ground.png);
+    border: .0625rem solid #ccc;
+    border-radius: 0.25rem; 
+    margin: 0 0.25rem 1rem;
+    padding: 1rem;
+}
+
+.select-class-button img {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button[selected="true"] {
+    border: .0625rem solid #0275d8;
+}
+
+#selected-class {
     background-color: dimgray;
-    border-radius: 0.5rem; 
-    border: 1rem;
-    border-color:dimgray;
-    margin: 0 0.5rem 1rem;
+    border: .0625rem solid #ccc;
+    border-radius: 0.25rem; 
+    padding: 1rem;
+}
+
+#selected-class strong {
+    background-color: dimgray;
+    color: whitesmoke;
 }
 
 #header {

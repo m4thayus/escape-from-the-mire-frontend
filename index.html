@@ -16,27 +16,36 @@
             <div id="title">
                 <h1>Escape from the Mire</h1>
             </div>
-
             <form class="form-group" id="create-user">
+                <h5>And get the highest score possible!</h5>
                 <br>
                 <input class="form-control" id="username" type="text" name="username" id="" placeholder="Character Name" required>
                 <br>
-                <img id='select-ranger' src="img/character/ranger.gif" alt="" srcset="">
-                <img id='select-paladin' src="img/character/paladin.gif" alt="" srcset="">
-                <img id='select-sage' src="img/character/sage.gif" alt="" srcset="">
-                <img id='select-rogue' src="img/character/rogue.gif" alt="" srcset="">
-                <img id='select-necromancer' src="img/character/necromancer.gif" alt="">
+                <button class="select-class-button" id='select-ranger' type="button" selected="true"><img src="img/character/ranger.gif" alt="" srcset=""></button>
+                <button class="select-class-button" id='select-paladin' type="button"><img src="img/character/paladin.gif" alt="" srcset=""></button>
+                <button class="select-class-button" id='select-sage' type="button"><img src="img/character/sage.gif" alt="" srcset=""></button>
+                <button class="select-class-button" id='select-rogue' type="button"><img src="img/character/rogue.gif" alt="" srcset=""></button>
+                <button class="select-class-button" id='select-necromancer' type="button"><img src="img/character/necromancer.gif" alt=""></button>
+                <br>
                 <p name='selectedClass' id='selected-class'></p>
+                <br>
                 <input id='selected-class-input' type="hidden" name="class" value="ranger">
-                <input class="btn btn-primary" class="form-control" type="submit" value="Start Game">
+                <br>
+                <input class="btn btn-success btn-block" class="form-control" type="submit" value="Start Game">
             </form>
-            <button class="btn btn-info" id="show-scores">High Scores</button>
-
+            <form class="form-group">
+                <input class="btn btn-primary btn-block" id="show-scores" type="button" value="High Scores">
+            </form>
+            <a href="https://conceptualsoup.blog/" class="btn btn-danger btn-block" role="button">Back to Conceptual Soup</a>
         </div>
         <div id="app"></div>
         <div id="log-container" style="display: none;">
             <div id='console-container'>
-                    <p>Welcome to Bleakfen Mire</p>
+                    <p>Welcome to Bleakfen Mire!</p>
+                    <p>Find the exit at the North or South of the map.</p>
+                    <p>Avoid monsters and traps.</p>
+                    <p>Maybe find some treasure along the way.</p>
+                    <p>Use WASD or Arrow Keys to move.</p>
             </div>
             <div style="text-align: right;">
                 <span><p id='health'></p></span>
