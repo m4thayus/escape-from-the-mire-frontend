@@ -157,7 +157,7 @@ function handleShowScores(){
 		app().innerHTML = ""
 		createUserForm().style.display = ''
 		backToBlogButton().style.display = ''
-		this.innerText = 'High Scores'
+		this.value = 'High Scores'
 	}
 }
 
