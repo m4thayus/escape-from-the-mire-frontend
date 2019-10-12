@@ -95,7 +95,9 @@ class User {
         addMovementListener()
         logContainer().style = "display: flex;"
         //.innerText = messageArray[Math.floor(Math.random() * messageArray.length)];
-        title().style = "display: none;" 
+        title().style.display= "none" 
+        backToBlogButton().style.display = 'none'
+        showScores().style.display = "none"
         event.target.remove()
     }
 
