@@ -3,9 +3,12 @@ function title() {
     return document.querySelector("h1");
 }
 
-
 function createUserForm() {
 	return document.getElementById('create-user')
+}
+
+function backToBlogButton() {
+	return document.getElementById('to-blog')
 }
 
 function addMovementListener() {
@@ -144,14 +147,15 @@ showScores().addEventListener('click', handleShowScores)
 
 function handleShowScores(){
 	
-	if (this.innerText === 'High Scores') {
+	if (this.value === 'High Scores') {
 		app().innerHTML = ""
 		createUserForm().style.display = 'none'
-		this.innerText = 'Back to Start Menu'
+		this.value = 'Back to Start Menu'
 		User.getUsers()
 	} else {
 		app().innerHTML = ""
 		createUserForm().style.display = ''
+		backToBlogButton().style.display = ''
 		this.innerText = 'High Scores'
 	}
 }
