@@ -150,6 +150,7 @@ function handleShowScores(){
 	if (this.value === 'High Scores') {
 		app().innerHTML = ""
 		createUserForm().style.display = 'none'
+		backToBlogButton().style.display = 'none'
 		this.value = 'Back to Start Menu'
 		User.getUsers()
 	} else {
